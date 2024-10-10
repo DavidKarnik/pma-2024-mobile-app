@@ -1,4 +1,4 @@
-package com.example.hraj;
+package com.example.hraj.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;

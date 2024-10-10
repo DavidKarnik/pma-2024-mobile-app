@@ -1,13 +1,15 @@
-package com.example.hraj;
+package com.example.hraj.models;
 
 public class Tile {
     private String title;
     private Integer numOfPlayers;
+    private String shortDescription;
     private String description;
 
-    public Tile(String title, String description,Integer numOfPlayers) {
+    public Tile(String title, String shortDescription, String description, Integer numOfPlayers) {
         this.title = title;
         this.numOfPlayers = numOfPlayers;
+        this.shortDescription = shortDescription;
         this.description = description;
     }
 
@@ -33,5 +35,13 @@ public class Tile {
 
     public void setNumOfPlayers(Integer numOfPlayers) {
         this.numOfPlayers = numOfPlayers;
+    }
+
+    public String getShortDescription() {
+        return shortDescription;
+    }
+
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
     }
 }

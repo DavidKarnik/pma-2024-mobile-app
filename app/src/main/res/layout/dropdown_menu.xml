@@ -1,0 +1,12 @@
+<!-- res/menu/dropdown_menu.xml -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/option1"
+        android:title="Možnost 1" />
+    <item
+        android:id="@+id/option2"
+        android:title="Možnost 2" />
+    <item
+        android:id="@+id/option3"
+        android:title="Možnost 3" />
+</menu>

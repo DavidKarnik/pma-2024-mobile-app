@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Hraj</string>
+    <string name="title">TitleAAAAAA</string>
+    <string name="shortDescription">Short description</string>
+    <string name="description">Description</string>
+    <string name="players">Players</string>
+    <string name="sort_ascending">Seřadit vzestupně podle počtu hráčů</string>
+    <string name="sort_descending">Seřadit sestupně podle počtu hráčů</string>
+    <string name="sorting_options">Možnosti řazení</string>
+    <string name="search_title">Vyhledavani</string>
+    <string name="search">Hledat</string>
+    <string name="cancel">Zrusit</string>
+    <string name="searching">Vyhledavani</string>
+    <string name="option1_selected">Option 1 selected</string>
+    <string name="option2_selected">Option 2 selected</string>
+    <string name="option3_selected">Option 3 selected</string>
 </resources>

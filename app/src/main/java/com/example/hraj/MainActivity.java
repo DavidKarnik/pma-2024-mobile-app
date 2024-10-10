@@ -1,87 +1,84 @@
 package com.example.hraj;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.widget.ExpandableListAdapter;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
+import com.example.hraj.adapters.TileAdapter;
+import com.example.hraj.handlers.SearchHandler;
+import com.example.hraj.handlers.SortingHandler;
+import com.example.hraj.models.Tile;
+import com.example.hraj.utils.TileLoader;
+
 import java.util.List;
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
     private TileAdapter adapter;
     private List<Tile> tileList;
+    private SearchHandler searchHandler;
+    private SortingHandler sortingHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tileList = loadTiles();
+        // add Toolbaru jako ActionBar
+        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        // add akce pro tlačítko lupy (search)
+        searchHandler = new SearchHandler(this);
+        ImageView searchIcon = findViewById(R.id.search_icon);
+        searchIcon.setOnClickListener(v -> searchHandler.showSearchDialog());
+
+        // Načítání a nastavení tile listu
+        TileLoader tileLoader = new TileLoader();
+        tileList = tileLoader.loadTiles();
         setUpRecyclerView();
-        setUpSortingOptions();
+
+        // add možnosti řazení
+        ExpandableListView expandableListView = findViewById(R.id.expandableListView);
+        sortingHandler = new SortingHandler(this, tileList, adapter);
+        sortingHandler.setUpSortingOptions(expandableListView);
     }
 
-    /**
-     * Nastavení RecyclerView - dynamičtější, modernější varianta od ListView
-     */
     private void setUpRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new TileAdapter(tileList);
+        adapter = new TileAdapter(this, tileList);
         recyclerView.setAdapter(adapter);
     }
 
-    /**
-     * Nastavení elementu pro možností řazení
-     */
-    private void setUpSortingOptions() {
-        // Data pro ExpandableListView
-        ExpandableListView expandableListView = findViewById(R.id.expandableListView);
-        Map<String, List<String>> expandableListDetail = getData();
-        List<String> expandableListTitle = new ArrayList<>(expandableListDetail.keySet());
-        ExpandableListAdapter expandableListAdapter = new CustomExpandableListAdapter(this, expandableListTitle, expandableListDetail);
-        expandableListView.setAdapter(expandableListAdapter);
-
-        // Akce po kliknutí na podskupinu (možnost třídění)
-        expandableListView.setOnChildClickListener((parent, v, groupPosition, childPosition, id) -> {
-            String selected = expandableListDetail.get(expandableListTitle.get(groupPosition)).get(childPosition);
-
-            // Řazení podle vybrané možnosti
-            if (selected.equals("Seřadit vzestupně podle počtu hráčů")) {
-                Collections.sort(tileList, (tile1, tile2) -> tile1.getNumOfPlayers().compareTo(tile2.getNumOfPlayers()));
-            } else if (selected.equals("Seřadit sestupně podle počtu hráčů")) {
-                Collections.sort(tileList, (tile1, tile2) -> tile2.getNumOfPlayers().compareTo(tile1.getNumOfPlayers()));
-            }
-
-            // Aktualizace adapteru po řazení
-            adapter.notifyDataSetChanged();
-            return false; // = akce nebyla přerušena
-        });
+    @SuppressLint("ResourceType")
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.layout.dropdown_menu, menu);
+        return true;
     }
 
-    private Map<String, List<String>> getData() {
-        Map<String, List<String>> expandableListDetail = new HashMap<>();
-        List<String> sortingOptions = new ArrayList<>();
-        sortingOptions.add("Seřadit vzestupně podle počtu hráčů");
-        sortingOptions.add("Seřadit sestupně podle počtu hráčů");
-        expandableListDetail.put("Možnosti řazení", sortingOptions);
-        return expandableListDetail;
-    }
-
-    private List<Tile> loadTiles() {
-        List<Tile> tiles = new ArrayList<>();
-        tiles.add(new Tile("Tile 1", "This is the description for tile 1", 5));
-        tiles.add(new Tile("Tile 2", "This is the description for tile 2", 3));
-        tiles.add(new Tile("Tile 3", "This is the description for tile 3", 7));
-        tiles.add(new Tile("Tile 4", "This is the description for tile 4", 2));
-        return tiles;
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.option1) {
+            Toast.makeText(this, getString(R.string.option1_selected), Toast.LENGTH_SHORT).show();
+            return true;
+        } else if (id == R.id.option2) {
+            Toast.makeText(this, getString(R.string.option2_selected), Toast.LENGTH_SHORT).show();
+            return true;
+        } else if (id == R.id.option3) {
+            Toast.makeText(this, getString(R.string.option3_selected), Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

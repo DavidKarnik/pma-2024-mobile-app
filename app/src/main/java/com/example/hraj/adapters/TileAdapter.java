@@ -1,20 +1,29 @@
-package com.example.hraj;
+package com.example.hraj.adapters;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.hraj.R;
+import com.example.hraj.TileDetailActivity;
+import com.example.hraj.models.Tile;
+
 import java.util.List;
 
 public class TileAdapter extends RecyclerView.Adapter<TileAdapter.TileViewHolder> {
 
     private List<Tile> tileList;
+    private Context context;
 
-    public TileAdapter(List<Tile> tileList) {
+    public TileAdapter(Context context, List<Tile> tileList) {
+        this.context = context;
         this.tileList = tileList;
     }
 
@@ -29,8 +38,8 @@ public class TileAdapter extends RecyclerView.Adapter<TileAdapter.TileViewHolder
     public void onBindViewHolder(@NonNull TileViewHolder holder, int position) {
         Tile tile = tileList.get(position);
         holder.titleTextView.setText(tile.getTitle());
-        holder.numOfPlayers.setText("Players: " + tile.getNumOfPlayers());
-        holder.descriptionTextView.setText(tile.getDescription());
+        holder.numOfPlayers.setText(context.getString(R.string.players) + ": " + tile.getNumOfPlayers());
+        holder.descriptionTextView.setText(tile.getShortDescription());
 
         // click listener pro dlaždici
         holder.itemView.setOnClickListener(v -> {
