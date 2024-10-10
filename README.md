@@ -10,3 +10,5 @@ Semestrální projekt
 - další podmínkou je, že aplikace musí využívat databázi
 
 ## Vypracování:
+- [ ] Mobilní aplikace pro android
+- [ ] Propojení aplikace s databází
