@@ -1,6 +1,7 @@
 package com.example.hraj;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -69,11 +70,13 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.addGame) {
             Toast.makeText(this, getString(R.string.option1_selected), Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, AddGameActivity.class);
+            startActivity(intent);
             return true;
         } else if (id == R.id.option2) {
             Toast.makeText(this, getString(R.string.option2_selected), Toast.LENGTH_SHORT).show();
             return true;
-        } else if (id == R.id.option3) {
+        } else if (id == R.id.settings) {
             Toast.makeText(this, getString(R.string.option3_selected), Toast.LENGTH_SHORT).show();
             return true;
         }

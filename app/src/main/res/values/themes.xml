@@ -9,11 +9,12 @@
     <!-- Styl pro Toolbar -->
     <style name="AppTheme.Toolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:textColorPrimary">@color/black</item> <!-- Barva textu a "3 teček" -->
+        <item name="android:background">?attr/colorPrimary</item>
     </style>
     <style name="ToolbarPopupTheme" parent="ThemeOverlay.Material3.Light">
         <!-- Barva textu menu položek -->
         <item name="android:textColor">@color/white</item>
-        <!-- Barva ikon (pokud jsou přítomny) -->
+        <!-- Barva pod ikonami -->
         <item name="colorOnSurface">@color/yellow</item>
         <!-- Barva pozadí menu -->
 <!--        <item name="android:background">@color/orange</item>-->

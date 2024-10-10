@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Hraj</string>
     <string name="title">TitleAAAAAA</string>
-    <string name="shortDescription">Short description</string>
+    <string name="short_description">Short description</string>
     <string name="description">Description</string>
     <string name="players">Players</string>
     <string name="sort_ascending">Seřadit vzestupně podle počtu hráčů</string>
@@ -15,4 +15,11 @@
     <string name="option2_selected">Option 2 selected</string>
     <string name="option3_selected">Option 3 selected</string>
     <string name="no_results_found">Nic nenalezeno</string>
+    <string name="add_game">Přidat hru</string>
+    <string name="settings">Nastavení</string>
+    <string name="enter_game_title">Název hry</string>
+    <string name="enter_number_of_players">Počet hráčů</string>
+    <string name="enter_short_description">Krátký popis</string>
+    <string name="enter_full_description">Úplný popis</string>
+    <string name="save">Uložit</string>
 </resources>

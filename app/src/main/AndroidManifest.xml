@@ -26,5 +26,8 @@
         <activity
             android:name=".TileDetailActivity"
             android:exported="false" />
+        <activity
+            android:name=".AddGameActivity"
+            android:exported="false" />
     </application>
 </manifest>

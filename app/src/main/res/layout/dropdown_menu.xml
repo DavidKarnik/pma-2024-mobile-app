@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/addGame"
-        android:title="Přidat hru" />
+        android:title="@string/add_game" />
     <item
         android:id="@+id/option2"
         android:title="Možnost 2" />
     <item
-        android:id="@+id/option3"
-        android:title="Možnost 3" />
+        android:id="@+id/settings"
+        android:title="@string/settings" />
 </menu>

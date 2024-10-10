@@ -7,12 +7,10 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <!-- Toolbar pro umístění menu -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
         app:theme="@style/AppTheme.Toolbar" >
 
         <!-- Ikona lupy jako samostatné tlačítko -->

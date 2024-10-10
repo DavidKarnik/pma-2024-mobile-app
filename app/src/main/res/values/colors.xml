@@ -2,7 +2,10 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="my_light_primary">#7647BA</color>
+    <color name="purple">#7647BA</color>
     <color name="yellow">#FDD765</color>
     <color name="orange">#FD9331</color>
+    <color name="green">#4AB142</color>
+    <color name="red">#EB2F2F</color>
+    <color name="grey">#686868</color>
 </resources>
