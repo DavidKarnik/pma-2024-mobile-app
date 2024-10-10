@@ -15,15 +15,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.hraj.adapters.TileAdapter;
 import com.example.hraj.handlers.SearchHandler;
 import com.example.hraj.handlers.SortingHandler;
-import com.example.hraj.models.Tile;
+import com.example.hraj.handlers.TileHandler;
 import com.example.hraj.utils.TileLoader;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private TileAdapter adapter;
-    private List<Tile> tileList;
+    private TileHandler tileHandler;
     private SearchHandler searchHandler;
     private SortingHandler sortingHandler;
 
@@ -32,30 +30,30 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // add Toolbaru jako ActionBar
+        // Nastavení Toolbaru
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // add akce pro tlačítko lupy (search)
-        searchHandler = new SearchHandler(this);
+        // Načtení dlaždic a nastavení TileHandleru
+        TileLoader tileLoader = new TileLoader();
+        tileHandler = new TileHandler(tileLoader.loadTiles());
+        setUpRecyclerView();
+
+        // Nastavení vyhledávání
+        searchHandler = new SearchHandler(this, tileHandler.getOriginalTileList(), adapter);
         ImageView searchIcon = findViewById(R.id.search_icon);
         searchIcon.setOnClickListener(v -> searchHandler.showSearchDialog());
 
-        // Načítání a nastavení tile listu
-        TileLoader tileLoader = new TileLoader();
-        tileList = tileLoader.loadTiles();
-        setUpRecyclerView();
-
-        // add možnosti řazení
+        // Nastavení možností řazení
         ExpandableListView expandableListView = findViewById(R.id.expandableListView);
-        sortingHandler = new SortingHandler(this, tileList, adapter);
+        sortingHandler = new SortingHandler(this, tileHandler.getShownTileList(), adapter);
         sortingHandler.setUpSortingOptions(expandableListView);
     }
 
     private void setUpRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new TileAdapter(this, tileList);
+        adapter = new TileAdapter(this, tileHandler.getShownTileList());
         recyclerView.setAdapter(adapter);
     }
 
@@ -69,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.option1) {
+        if (id == R.id.addGame) {
             Toast.makeText(this, getString(R.string.option1_selected), Toast.LENGTH_SHORT).show();
             return true;
         } else if (id == R.id.option2) {
@@ -80,5 +78,15 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (tileHandler.isTileListChanged()) {
+            tileHandler.resetTileList();
+            adapter.notifyDataSetChanged(); // Upozornění adapteru, že se data změnila
+        }
     }
 }

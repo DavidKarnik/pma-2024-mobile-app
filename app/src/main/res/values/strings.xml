@@ -14,4 +14,5 @@
     <string name="option1_selected">Option 1 selected</string>
     <string name="option2_selected">Option 2 selected</string>
     <string name="option3_selected">Option 3 selected</string>
+    <string name="no_results_found">Nic nenalezeno</string>
 </resources>

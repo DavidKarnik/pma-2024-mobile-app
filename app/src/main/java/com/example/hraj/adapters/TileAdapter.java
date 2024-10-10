@@ -1,5 +1,6 @@
 package com.example.hraj.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -74,5 +75,13 @@ public class TileAdapter extends RecyclerView.Adapter<TileAdapter.TileViewHolder
             numOfPlayers = itemView.findViewById(R.id.numOfPlayers);
             descriptionTextView = itemView.findViewById(R.id.tileDescription);
         }
+    }
+
+    // Metoda pro aktualizaci seznamu dlaždic
+    @SuppressLint("NotifyDataSetChanged")
+    public void updateTileList(List<Tile> newTileList) {
+        this.tileList.clear();
+        this.tileList.addAll(newTileList);
+        notifyDataSetChanged();
     }
 }
