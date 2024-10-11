@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Hraj"
         tools:targetApi="31">
+        <!-- Main aktivita -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -21,11 +22,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <!-- TileDetailActivity: Aktivita pro zobrazení podrobností o dlaždici -->
+        <!-- Aktivita pro zobrazení podrobností o dlaždici -->
         <activity
             android:name=".TileDetailActivity"
             android:exported="false" />
+        <!-- Aktivita pro zobrazení menu s přidáním hry -->
         <activity
             android:name=".AddGameActivity"
             android:exported="false" />

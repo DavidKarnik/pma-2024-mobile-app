@@ -1,16 +1,14 @@
 <resources>
     <string name="app_name">Hraj</string>
-    <string name="title">TitleAAAAAA</string>
-    <string name="short_description">Short description</string>
-    <string name="description">Description</string>
-    <string name="players">Players</string>
+    <string name="description">Popis</string>
+    <string name="players">Hráči</string>
     <string name="sort_ascending">Seřadit vzestupně podle počtu hráčů</string>
     <string name="sort_descending">Seřadit sestupně podle počtu hráčů</string>
     <string name="sorting_options">Možnosti řazení</string>
-    <string name="search_title">Vyhledavani</string>
+    <string name="search_title">Vyhledávání</string>
     <string name="search">Hledat</string>
-    <string name="cancel">Zrusit</string>
-    <string name="searching">Vyhledavani</string>
+    <string name="cancel">Zrušit</string>
+    <string name="searching">Vyhledávání</string>
     <string name="option1_selected">Option 1 selected</string>
     <string name="option2_selected">Option 2 selected</string>
     <string name="option3_selected">Option 3 selected</string>
@@ -18,8 +16,9 @@
     <string name="add_game">Přidat hru</string>
     <string name="settings">Nastavení</string>
     <string name="enter_game_title">Název hry</string>
-    <string name="enter_number_of_players">Počet hráčů</string>
-    <string name="enter_short_description">Krátký popis</string>
-    <string name="enter_full_description">Úplný popis</string>
+    <string name="number_of_players">Počet hráčů</string>
+    <string name="short_description">Krátký popis</string>
+    <string name="full_description">Úplný popis</string>
     <string name="save">Uložit</string>
+    <string name="difficulty">Obtížnost</string>
 </resources>

@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="16sp">
 
     <EditText
         android:id="@+id/gameTitle"
@@ -15,28 +16,50 @@
         android:id="@+id/numOfPlayers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/enter_number_of_players"
+        android:hint="@string/number_of_players"
         android:inputType="number" />
 
     <EditText
         android:id="@+id/shortDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/enter_short_description"
+        android:hint="@string/short_description"
         android:inputType="text" />
 
     <EditText
         android:id="@+id/fullDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/enter_full_description"
+        android:hint="@string/full_description"
         android:inputType="text" />
 
-    <Button
-        android:id="@+id/btnSave"
-        android:layout_width="150sp"
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/green"
-        android:text="@string/save"
+        android:text="@string/difficulty"
         android:textSize="18sp" />
+
+    <RatingBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="5"
+        android:min="1"
+        android:numStars="5"
+        android:rating="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="150sp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/green"
+            android:text="@string/save"
+            android:textSize="18sp" />
+    </LinearLayout>
+
 </LinearLayout>
