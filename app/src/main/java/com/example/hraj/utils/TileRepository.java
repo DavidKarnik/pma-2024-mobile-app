@@ -1,12 +1,70 @@
 package com.example.hraj.utils;
 
+import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
+
 import com.example.hraj.models.Tile;
+import com.example.hraj.models.TileDao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-public class TileLoader {
-    public List<Tile> loadTiles() {
+public class TileRepository {
+    private AppDatabase appDatabase;
+    private TileDao tileDao;
+    private Context context;
+    private ExecutorService executorService;
+    //    Each Handler instance is associated with a single thread
+    //    Handler umožňuje komunikaci mezi různými vlákny
+    private Handler mainHandler;
+
+    public TileRepository(Context context) {
+        this.context = context;
+        appDatabase = AppDatabase.getInstance(context);
+        tileDao = appDatabase.tileDao();
+
+        // Executor pro asynchronní operace
+        executorService = Executors.newSingleThreadExecutor();
+        // Handler pro práci na hlavním vlákně
+        // Looper je mechanizmus, který umožňuje vláknu opakovaně čekat na a zpracovávat zprávy nebo úlohy.
+        // Každé vlákno může mít vlastní Looper, který vytváří tzv. „zprávový cyklus“ (message loop), což
+        // je cyklus, který čeká na příchozí zprávy (úlohy) a pak je zpracovává.
+        mainHandler = new Handler(Looper.getMainLooper());
+
+        // Naplnění databáze dlaždicemi
+//        populateDatabase();
+    }
+
+    private void populateDatabase() {
+//        Tile[] defaultTiles = {
+//                new Tile("Tile 1", "Krátký popis", "Dlouhý popis dlaždice 1", 5),
+//                new Tile("Tile 2", "Krátký popis", "Dlouhý popis dlaždice 2", 3),
+//                new Tile("Tile 3", "Krátký popis", "Dlouhý popis dlaždice 3", 7),
+//                new Tile("Tile 4", "Krátký popis", "Dlouhý popis dlaždice 4", 2)
+//        };
+        List<Tile> staticTiles = loadTilesStatic();
+        for (Tile tile : staticTiles) {
+            executorService.execute(() -> tileDao.insertTile(tile));
+        }
+    }
+
+    public void loadTilesAsync(Callback<List<Tile>> callback) {
+        executorService.execute(() -> {
+            // Načti data z databáze
+            List<Tile> tiles = tileDao.getAllTiles();
+            // Vrať data pomocí callbacku na hlavním vlákně
+            mainHandler.post(() -> callback.onComplete(tiles));
+        });
+    }
+
+    public interface Callback<T> {
+        void onComplete(T result);
+    }
+
+    public List<Tile> loadTilesStatic() {
         List<Tile> tiles = new ArrayList<>();
         String description1 = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Mauris tincidunt sem sed arcu. Nullam justo enim, consectetuer nec, ullamcorper ac, vestibulum in, elit. Quisque porta. Phasellus rhoncus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Duis viverra diam non justo. Morbi imperdiet, mauris ac auctor dictum, nisl ligula egestas nulla, et sollicitudin sem purus in lacus. Nulla est. Vestibulum erat nulla, ullamcorper nec, rutrum non, nonummy ac, erat. Mauris suscipit, ligula sit amet pharetra semper, nibh ante cursus purus, vel sagittis velit mauris vel metus. Integer vulputate sem a nibh rutrum consequat. Curabitur sagittis hendrerit ante.\n" + "Praesent id justo in neque elementum ultrices. Sed elit dui, pellentesque a, faucibus vel, interdum nec, diam. Praesent vitae arcu tempor neque lacinia pretium. Duis condimentum augue id magna semper rutrum. Etiam posuere lacus quis dolor. Mauris metus. Donec quis nibh at felis congue commodo. Etiam bibendum elit eget erat. Mauris elementum mauris vitae tortor. Integer malesuada. Curabitur sagittis hendrerit ante. Ut tempus purus at lorem. Fusce consectetuer risus a nunc. In convallis. Suspendisse nisl. Nullam faucibus mi quis velit. Maecenas aliquet accumsan leo.";
         String description2 = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Pellentesque sapien. Integer malesuada. Vivamus ac leo pretium faucibus. Donec vitae arcu. In laoreet, magna id viverra tincidunt, sem odio bibendum justo, vel imperdiet sapien wisi sed libero. Donec ipsum massa, ullamcorper in, auctor et, scelerisque sed, est. Duis condimentum augue id magna semper rutrum. Vestibulum erat nulla, ullamcorper nec, rutrum non, nonummy ac, erat. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Praesent dapibus. Proin mattis lacinia justo. Integer pellentesque quam vel velit. Morbi scelerisque luctus velit. Nulla pulvinar eleifend sem.\n" + "Etiam sapien elit, consequat eget, tristique non, venenatis quis, ante. Nulla non arcu lacinia neque faucibus fringilla. Integer in sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent in mauris eu tortor porttitor accumsan. Nullam lectus justo, vulputate eget mollis sed, tempor sed magna. Nullam eget nisl. Fusce aliquam vestibulum ipsum. Donec vitae arcu. Mauris elementum mauris vitae tortor.";
@@ -20,4 +78,3 @@ public class TileLoader {
         return tiles;
     }
 }
-

@@ -17,10 +17,12 @@ import com.example.hraj.adapters.TileAdapter;
 import com.example.hraj.handlers.SearchHandler;
 import com.example.hraj.handlers.SortingHandler;
 import com.example.hraj.handlers.TileHandler;
-import com.example.hraj.utils.TileLoader;
+import com.example.hraj.utils.TileRepository;
+
 
 public class MainActivity extends AppCompatActivity {
 
+    private TileRepository tileRepository;
     private TileAdapter adapter;
     private TileHandler tileHandler;
     private SearchHandler searchHandler;
@@ -32,23 +34,32 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Nastavení Toolbaru
+        setUpToolbar();
+
+        // init TileRepository
+        tileRepository = new TileRepository(this);
+        // *asynchronní* načtení dlaždic a nastavení komponent
+        loadTiles();
+    }
+
+    private void setUpToolbar() {
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+    }
 
-        // Načtení dlaždic a nastavení TileHandleru
-        TileLoader tileLoader = new TileLoader();
-        tileHandler = new TileHandler(tileLoader.loadTiles());
-        setUpRecyclerView();
+    /**
+     * Asynchronní načtení dlaždic a nastavení závislých komponent
+     */
+    private void loadTiles() {
+        tileRepository.loadTilesAsync(resultLoadedTiles -> {
+            // Nastavení TileHandleru
+            tileHandler = new TileHandler(resultLoadedTiles);
 
-        // Nastavení vyhledávání
-        searchHandler = new SearchHandler(this, tileHandler.getOriginalTileList(), adapter);
-        ImageView searchIcon = findViewById(R.id.search_icon);
-        searchIcon.setOnClickListener(v -> searchHandler.showSearchDialog());
-
-        // Nastavení možností řazení
-        ExpandableListView expandableListView = findViewById(R.id.expandableListView);
-        sortingHandler = new SortingHandler(this, tileHandler.getShownTileList(), adapter);
-        sortingHandler.setUpSortingOptions(expandableListView);
+            // Nastavení RecyclerView, vyhledávání a řazení po načtení dat
+            setUpRecyclerView();
+            setUpSearchHandler();
+            setUpSortingHandler();
+        });
     }
 
     private void setUpRecyclerView() {
@@ -57,6 +68,19 @@ public class MainActivity extends AppCompatActivity {
         adapter = new TileAdapter(this, tileHandler.getShownTileList());
         recyclerView.setAdapter(adapter);
     }
+
+    private void setUpSearchHandler() {
+        searchHandler = new SearchHandler(this, tileHandler.getOriginalTileList(), adapter);
+        ImageView searchIcon = findViewById(R.id.search_icon);
+        searchIcon.setOnClickListener(v -> searchHandler.showSearchDialog());
+    }
+
+    private void setUpSortingHandler() {
+        ExpandableListView expandableListView = findViewById(R.id.expandableListView);
+        sortingHandler = new SortingHandler(this, tileHandler.getShownTileList(), adapter);
+        sortingHandler.setUpSortingOptions(expandableListView);
+    }
+
 
     @SuppressLint("ResourceType")
     @Override
@@ -71,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.addGame) {
             Toast.makeText(this, getString(R.string.option1_selected), Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, AddGameActivity.class);
+//            intent.putExtra("tileLoader", tileLoader);
             startActivity(intent);
             return true;
         } else if (id == R.id.option2) {
@@ -87,7 +112,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (tileHandler.isTileListChanged()) {
+        // +tileHandler != null -> inicializuje se asynchronně, takže kontrola, zda už je inicializován
+        if (tileHandler != null && tileHandler.isTileListChanged()) {
             tileHandler.resetTileList();
             adapter.notifyDataSetChanged(); // Upozornění adapteru, že se data změnila
         }

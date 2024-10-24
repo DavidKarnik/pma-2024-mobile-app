@@ -1,6 +1,12 @@
 package com.example.hraj.models;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "tiles")
 public class Tile {
+    @PrimaryKey(autoGenerate = true)
+    public int id;
     private String title;
     private Integer numOfPlayers;
     private String shortDescription;

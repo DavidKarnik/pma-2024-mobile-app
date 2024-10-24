@@ -41,5 +41,8 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
-    implementation("io.realm:realm-android-library:10.7.0") // pro databázi- Realm
+//    implementation("io.realm:realm-android-library:10.7.0") // pro databázi- Realm
+    implementation ("androidx.room:room-runtime:2.5.2")
+    annotationProcessor ("androidx.room:room-compiler:2.5.2")
+
 }
