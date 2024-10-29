@@ -1,5 +1,6 @@
 <!-- res/menu/dropdown_menu.xml -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+<!--    android:background="@color/black"-->
     <item
         android:id="@+id/addGame"
         android:title="@string/add_game" />

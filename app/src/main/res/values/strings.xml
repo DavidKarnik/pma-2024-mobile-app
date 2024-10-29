@@ -21,4 +21,5 @@
     <string name="full_description">Úplný popis</string>
     <string name="save">Uložit</string>
     <string name="difficulty">Obtížnost</string>
+    <string name="toolbar_title">Hraj</string>
 </resources>

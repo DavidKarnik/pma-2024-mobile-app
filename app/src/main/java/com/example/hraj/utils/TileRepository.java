@@ -77,4 +77,16 @@ public class TileRepository {
         tiles.add(new Tile("Tile 4", shortDescription, description4, 2));
         return tiles;
     }
+
+    public void insertTileAsync(Tile tile, Callback<Boolean> callback) {
+        executorService.execute(() -> {
+            try {
+                tileDao.insertTile(tile);
+                callback.onComplete(true); // Úspěch
+            } catch (Exception e) {
+                callback.onComplete(false); // Selhání
+            }
+        });
+    }
+
 }

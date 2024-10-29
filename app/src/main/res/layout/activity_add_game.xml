@@ -1,72 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16sp">
+    android:padding="0sp">
 
-    <EditText
-        android:id="@+id/gameTitle"
+    <include
+        layout="@layout/fragment_toolbar_basic"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/enter_game_title"
-        android:inputType="text" />
-
-    <EditText
-        android:id="@+id/numOfPlayers"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/number_of_players"
-        android:inputType="number" />
-
-<!--    <NumberPicker-->
-<!--        android:id="@+id/numberPicker"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:solidColor="#00FF00"-->
-<!--        android:layout_gravity="center"/>-->
-
-    <EditText
-        android:id="@+id/shortDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/short_description"
-        android:inputType="text" />
-
-    <EditText
-        android:id="@+id/fullDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/full_description"
-        android:inputType="text" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/difficulty"
-        android:textSize="18sp" />
-
-    <RatingBar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:max="5"
-        android:min="1"
-        android:numStars="5"
-        android:rating="1" />
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16sp">
 
-        <Button
-            android:id="@+id/btnSave"
-            android:layout_width="150sp"
+        <EditText
+            android:id="@+id/gameTitle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/green"
-            android:text="@string/save"
-            android:textSize="18sp" />
-    </LinearLayout>
+            android:hint="@string/enter_game_title"
+            android:inputType="text" />
 
+        <EditText
+            android:id="@+id/numOfPlayers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/number_of_players"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/shortDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/short_description"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/fullDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/full_description"
+            android:inputType="text" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="150sp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/green"
+                android:text="@string/save"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+    </LinearLayout>
 </LinearLayout>

@@ -9,4 +9,11 @@
     <color name="red">#EB2F2F</color>
     <color name="grey">#686868</color>
     <color name="blue">#0081BF</color>
+    <color name="darkGrey">#333333</color>
+    <color name="lightGrey">#C8C8C8</color>
+    <color name="lightOrange">#FF8A50</color>
+    <color name="brown">#8C4E2F</color>
+    <color name="lightGold">#EDFFD966</color>
+    <color name="darkBlue2">#16685C</color>
+
 </resources>
