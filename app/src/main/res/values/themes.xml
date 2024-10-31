@@ -1,35 +1,19 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.Hraj" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Pozadí aplikace (gradient) -->
+    <style name="Theme.Hraj" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:windowBackground">@drawable/background_gradient_light_orange_red</item>
-
     </style>
 
-    <style name="Theme.Hraj" parent="Base.Theme.Hraj" />
-
-    <style name="tilesStyle" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Theme.Halloween.Tiles" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:background">@color/black</item>
         <item name="android:textColor">@color/white</item>
-<!--        <item name="android:textFontWeight">50</item>-->
     </style>
 
-    <!-- Styl pro Toolbar -->
-    <style name="toolbarStyle" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-<!--        <item name="android:textColorPrimary">@color/white</item> &lt;!&ndash; Barva textu a "3 teček" &ndash;&gt;-->
+    <style name="Theme.Halloween.Toolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:background">@color/black</item>
         <item name="android:textColor">@color/white</item>
-<!--        <item name="android:textSize">25sp</item>-->
-<!--        <item name="android:textStyle">bold</item>-->
     </style>
 
-
-<!--    <style name="ToolbarPopupTheme" parent="ThemeOverlay.Material3.Light">-->
-<!--        &lt;!&ndash; Barva textu menu položek &ndash;&gt;-->
-<!--        <item name="android:textColor">@color/white</item>-->
-<!--        &lt;!&ndash; Barva pod ikonami &ndash;&gt;-->
-<!--        <item name="colorOnSurface">@color/yellow</item>-->
-<!--        &lt;!&ndash; Barva pozadí menu &ndash;&gt;-->
-<!--    </style>-->
-
+    <style name="Theme.Halloween" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowBackground">@drawable/background_gradient_light_orange_red</item>
+    </style>
 </resources>

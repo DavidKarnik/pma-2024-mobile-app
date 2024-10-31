@@ -11,17 +11,24 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:theme="@style/toolbarStyle">
+        app:theme="@style/Theme.Halloween.Toolbar">
 
 
-        <TextView
-            android:id="@+id/toolbar_title"
+<!--        <TextView-->
+<!--            android:id="@+id/toolbar_title"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="start"-->
+<!--            android:text="@string/toolbar_title"-->
+<!--            android:textSize="25sp"-->
+<!--            android:textStyle="bold" />-->
+
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/toolbar_title"
-            android:textSize="25sp"
-            android:textStyle="bold"/>
+            android:contentDescription="logo aplikace"
+            android:src="@drawable/hrajlogo">
+        </ImageView>
 
         <!-- Ikona lupy jako samostatné tlačítko -->
         <ImageView

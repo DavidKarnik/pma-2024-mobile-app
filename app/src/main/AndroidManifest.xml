@@ -21,14 +21,16 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <!-- Aktivita pro zobrazení podrobností o dlaždici -->
+        </activity> <!-- Aktivita pro zobrazení podrobností o dlaždici -->
         <activity
             android:name=".TileDetailActivity"
-            android:exported="false" />
-        <!-- Aktivita pro zobrazení menu s přidáním hry -->
+            android:exported="false" /> <!-- Aktivita pro zobrazení menu s přidáním hry -->
         <activity
             android:name=".AddGameActivity"
             android:exported="false" />
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false" />
     </application>
+
 </manifest>

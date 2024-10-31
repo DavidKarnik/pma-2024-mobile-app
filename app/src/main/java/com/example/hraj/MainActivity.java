@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        TextView toolbarTitle = findViewById(R.id.toolbar_title);
-        toolbarTitle.setText(R.string.app_name);
+//        TextView toolbarTitle = findViewById(R.id.toolbar_title);
+//        toolbarTitle.setText(R.string.app_name);
     }
 
     /**
