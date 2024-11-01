@@ -6,6 +6,11 @@ android {
     namespace = "com.example.hraj"
     compileSdk = 34
 
+    buildFeatures {
+//        dataBinding = true
+        viewBinding = true
+    }
+
     defaultConfig {
         applicationId = "my.Id.On.Google.PlayStore"
         minSdk = 28

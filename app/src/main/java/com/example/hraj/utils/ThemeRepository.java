@@ -36,7 +36,7 @@ public class ThemeRepository {
         }
     }
 
-    private List<Theme> loadThemesStatic() {
+    public List<Theme> loadThemesStatic() {
         List<Theme> themeList = new ArrayList<>();
         // whole app
         String themeName = "Halloween";
@@ -48,6 +48,18 @@ public class ThemeRepository {
         // tiles
         String tilesBackground = "@color/black";
         String tilesTextColor = "@color/white";
+        themeList.add(new Theme(themeName, themeTextFont, windowBackground, toolbarBackground, toolbarTextColor, tilesBackground, tilesTextColor));
+
+        // whole app
+        themeName = "BasicBlue";
+        themeTextFont = ""; // font
+        windowBackground = "@drawable/background_gradient_basic_blue";
+        // toolbar
+        toolbarBackground = "@color/white";
+        toolbarTextColor = "@color/black";
+        // tiles
+        tilesBackground = "@color/white";
+        tilesTextColor = "@color/black";
         themeList.add(new Theme(themeName, themeTextFont, windowBackground, toolbarBackground, toolbarTextColor, tilesBackground, tilesTextColor));
 
         return themeList;

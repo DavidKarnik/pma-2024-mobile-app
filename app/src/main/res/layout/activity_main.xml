@@ -13,16 +13,6 @@
         android:layout_height="wrap_content"
         app:theme="@style/Theme.Halloween.Toolbar">
 
-
-<!--        <TextView-->
-<!--            android:id="@+id/toolbar_title"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="start"-->
-<!--            android:text="@string/toolbar_title"-->
-<!--            android:textSize="25sp"-->
-<!--            android:textStyle="bold" />-->
-
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

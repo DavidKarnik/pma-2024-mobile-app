@@ -89,7 +89,8 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("ResourceType")
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.layout.fragment_dropdown_menu, menu);
+//        getMenuInflater().inflate(R.layout.menu_dropdown_options, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -109,6 +110,10 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, getString(R.string.option3_selected), Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
+            return true;
+        }
+        else if (id == R.id.about) {
+            Toast.makeText(this, "O aplikaci zvoleno", Toast.LENGTH_SHORT).show();
             return true;
         }
         return super.onOptionsItemSelected(item);
