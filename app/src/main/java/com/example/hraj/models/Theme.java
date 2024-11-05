@@ -53,7 +53,7 @@ public class Theme {
     }
 
     public String getTilesTextColor() {
-        return null;
+        return tilesTextColor;
     }
 
     public int getPreviewImage() {

@@ -14,25 +14,32 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hraj.adapters.TileAdapter;
+import com.example.hraj.databinding.ActivityMainBinding;
 import com.example.hraj.handlers.SearchHandler;
 import com.example.hraj.handlers.SortingHandler;
+import com.example.hraj.handlers.ThemeHandler;
 import com.example.hraj.handlers.TileHandler;
+import com.example.hraj.utils.ThemeRepository;
 import com.example.hraj.utils.TileRepository;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private TileRepository tileRepository;
-    private TileAdapter adapter;
+    private TileAdapter tileAdapter;
     private TileHandler tileHandler;
     private SearchHandler searchHandler;
     private SortingHandler sortingHandler;
+    private ThemeRepository themeRepository;
+    private ThemeHandler themeHandler;
+    private ActivityMainBinding mainBinding;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_main);
+        mainBinding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(mainBinding.getRoot());
 
         // Nastavení Toolbaru
         setUpToolbar();
@@ -41,6 +48,10 @@ public class MainActivity extends AppCompatActivity {
         tileRepository = new TileRepository(this);
         // *asynchronní* načtení dlaždic a nastavení komponent
         loadTiles();
+
+        // themes
+        themeRepository = ThemeRepository.getInstance(getApplicationContext());
+        themeHandler = ThemeHandler.getInstance(mainBinding, themeRepository.loadThemesStatic());
     }
 
     private void setUpToolbar() {
@@ -69,19 +80,20 @@ public class MainActivity extends AppCompatActivity {
     private void setUpRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new TileAdapter(this, tileHandler.getShownTileList());
-        recyclerView.setAdapter(adapter);
+//        tileAdapter = new TileAdapter(this, tileHandler.getShownTileList());
+        tileAdapter = TileAdapter.getInstance(this, tileHandler.getShownTileList(), themeHandler.getActiveTheme());
+        recyclerView.setAdapter(tileAdapter);
     }
 
     private void setUpSearchHandler() {
-        searchHandler = new SearchHandler(this, tileHandler.getOriginalTileList(), adapter);
+        searchHandler = new SearchHandler(this, tileHandler.getOriginalTileList(), tileAdapter);
         ImageView searchIcon = findViewById(R.id.search_icon);
         searchIcon.setOnClickListener(v -> searchHandler.showSearchDialog());
     }
 
     private void setUpSortingHandler() {
         ExpandableListView expandableListView = findViewById(R.id.expandableListView);
-        sortingHandler = new SortingHandler(this, tileHandler.getShownTileList(), adapter);
+        sortingHandler = new SortingHandler(this, tileHandler.getShownTileList(), tileAdapter);
         sortingHandler.setUpSortingOptions(expandableListView);
     }
 
@@ -111,8 +123,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
             return true;
-        }
-        else if (id == R.id.about) {
+        } else if (id == R.id.about) {
             Toast.makeText(this, "O aplikaci zvoleno", Toast.LENGTH_SHORT).show();
             return true;
         }
@@ -126,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
         // +tileHandler != null -> inicializuje se asynchronně, takže kontrola, zda už je inicializován
         if (tileHandler != null && tileHandler.isTileListChanged()) {
             tileHandler.resetTileList();
-            adapter.notifyDataSetChanged(); // Upozornění adapteru, že se data změnila
+            tileAdapter.notifyDataSetChanged(); // Upozornění adapteru, že se data změnila
         }
     }
 }

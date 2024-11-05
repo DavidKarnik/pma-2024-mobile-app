@@ -14,11 +14,12 @@
         app:theme="@style/Theme.Halloween.Toolbar">
 
         <ImageView
+            android:id="@+id/logoImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="logo aplikace"
-            android:src="@drawable/hrajlogo">
-        </ImageView>
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/hrajlogo" />
 
         <!-- Ikona lupy jako samostatné tlačítko -->
         <ImageView
@@ -26,6 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
+            android:background="@android:color/transparent"
             android:contentDescription="@string/search_title"
             android:padding="8sp"
             android:src="@android:drawable/ic_menu_search"

@@ -10,10 +10,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hraj.R;
 import com.example.hraj.TileDetailActivity;
+import com.example.hraj.models.Theme;
 import com.example.hraj.models.Tile;
 
 import java.util.List;
@@ -22,10 +24,19 @@ public class TileAdapter extends RecyclerView.Adapter<TileAdapter.TileViewHolder
 
     private List<Tile> tileList;
     private Context context;
+    private static TileAdapter instance;
+    private Theme theme;
 
     public TileAdapter(Context context, List<Tile> tileList) {
         this.context = context;
         this.tileList = tileList;
+    }
+
+    // Private constructor to implement singleton pattern
+    private TileAdapter(Context context, List<Tile> tileList, Theme theme) {
+        this.context = context;
+        this.tileList = tileList;
+        this.theme = theme;
     }
 
     @NonNull
@@ -41,6 +52,14 @@ public class TileAdapter extends RecyclerView.Adapter<TileAdapter.TileViewHolder
         holder.titleTextView.setText(tile.getTitle());
         holder.numOfPlayers.setText(context.getString(R.string.players) + ": " + tile.getNumOfPlayers());
         holder.descriptionTextView.setText(tile.getShortDescription());
+
+        if(theme != null) {
+            // Apply theme colors to each tile
+            holder.cardView.setCardBackgroundColor(getColorResource(theme.getTilesBackground()));
+            holder.titleTextView.setTextColor(getColorResource(theme.getTilesTextColor()));
+            holder.numOfPlayers.setTextColor(getColorResource(theme.getTilesTextColor()));
+            holder.descriptionTextView.setTextColor(getColorResource(theme.getTilesTextColor()));
+        }
 
         // click listener pro dlaždici
         holder.itemView.setOnClickListener(v -> {
@@ -65,12 +84,13 @@ public class TileAdapter extends RecyclerView.Adapter<TileAdapter.TileViewHolder
     }
 
     static class TileViewHolder extends RecyclerView.ViewHolder {
-        TextView titleTextView;
-        TextView numOfPlayers;
-        TextView descriptionTextView;
+        TextView titleTextView, numOfPlayers, descriptionTextView;
+        CardView cardView;
 
         public TileViewHolder(@NonNull View itemView) {
             super(itemView);
+            cardView = itemView.findViewById(R.id.cardView);
+
             titleTextView = itemView.findViewById(R.id.tileTitle);
             numOfPlayers = itemView.findViewById(R.id.numOfPlayers);
             descriptionTextView = itemView.findViewById(R.id.tileDescription);
@@ -82,6 +102,46 @@ public class TileAdapter extends RecyclerView.Adapter<TileAdapter.TileViewHolder
     public void updateTileList(List<Tile> newTileList) {
         this.tileList.clear();
         this.tileList.addAll(newTileList);
+        notifyDataSetChanged();
+    }
+
+    // Static method to get a single instance of the adapter
+    public static TileAdapter getInstance(Context context, List<Tile> tileList, Theme theme) {
+        if (instance == null) {
+            instance = new TileAdapter(context, tileList, theme);
+        }
+        return instance;
+    }
+
+    // Metoda pro reset instance, pokud se seznam změní
+    public static void resetInstance() {
+        instance = null;
+    }
+
+    public static TileAdapter getInstance() {
+        return instance;
+    }
+
+    // Helper method to get color resource by name
+    private int getColorResource(String colorName) {
+        int colorId = context.getResources().getIdentifier(colorName, "color", context.getPackageName());
+        if (colorId == 0) {
+            // Pokud barva není nalezena, použijte výchozí bílou nebo jinou barvu
+            return context.getResources().getColor(R.color.white, null);
+        }
+        return context.getResources().getColor(colorId, null);
+    }
+
+
+    private int getResourceId(String resourceName) {
+        return context.getResources().getIdentifier(
+                resourceName, "drawable", context.getPackageName());
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void updateTheme(Theme newTheme) {
+        Toast.makeText(context, "updateTheme", Toast.LENGTH_SHORT).show();
+        this.theme = newTheme;
         notifyDataSetChanged();
     }
 }

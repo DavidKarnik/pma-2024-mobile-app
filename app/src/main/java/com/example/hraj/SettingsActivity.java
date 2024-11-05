@@ -1,5 +1,7 @@
 package com.example.hraj;
 
+import static com.example.hraj.handlers.ThemeHandler.initSettingsBinging;
+
 import android.os.Bundle;
 import android.widget.ImageView;
 
@@ -28,9 +30,11 @@ public class SettingsActivity extends AppCompatActivity {
         binding = ActivitySettingsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-
-        themesRepository = new ThemeRepository(this);
+//        themesRepository = new ThemeRepository(this);
+        initSettingsBinging(binding);
         loadThemes();
+
+        themeHandler.applyBorderOfActiveTheme();
 
         ImageView thumbnailBasicBlueTheme = findViewById(R.id.thumbnailBasicBlueTheme);
         ImageView thumbnailHalloweenTheme = findViewById(R.id.thumbnailHalloweenTheme);
@@ -56,7 +60,9 @@ public class SettingsActivity extends AppCompatActivity {
      * TODO jako u načítání Tiles v mainActivity
      */
     private void loadThemes() {
-        themeHandler = new ThemeHandler(binding, themesRepository.loadThemesStatic());
+//        themeHandler = new ThemeHandler(binding, themesRepository.loadThemesStatic());
+        // singleton, instance je zde null, vezme se instance aktuálního ThemeHandleru
+        themeHandler = ThemeHandler.getInstance(null, null);
     }
 
 }

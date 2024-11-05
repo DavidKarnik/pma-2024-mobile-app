@@ -1,39 +1,41 @@
 package com.example.hraj.handlers;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 
 import com.example.hraj.R;
+import com.example.hraj.adapters.TileAdapter;
+import com.example.hraj.databinding.ActivityMainBinding;
 import com.example.hraj.databinding.ActivitySettingsBinding;
 import com.example.hraj.models.Theme;
 
 import java.util.List;
 
 public class ThemeHandler {
+    // singleton
+    private static ThemeHandler instance;
 
-    Theme activeTheme = basicTheme();
+    private ActivitySettingsBinding settingsBinding;
+    private Theme activeTheme;
     private List<Theme> themes;
-    private final ActivitySettingsBinding binding;
+    private ActivityMainBinding mainBinding;
 
-    public ThemeHandler(ActivitySettingsBinding binding, List<Theme> themes) {
+    private ThemeHandler(ActivityMainBinding mainBinding, List<Theme> themes) {
+        this.mainBinding = mainBinding;
         this.themes = themes;
-        this.binding = binding;
+        this.activeTheme = basicTheme();
+    }
 
-//        context.setTheme(R.style.Theme_Hraj);
-// Step 3: Set the background and text color dynamically
-//        View tileView = findViewById(R.id.tileView);
-//        tileView.setBackgroundColor(ContextCompat.getColor(contextThemeWrapper, R.color.black));
-//        TextView tileTextView = findViewById(R.id.tileTextView);
-//        tileTextView.setTextColor(ContextCompat.getColor(contextThemeWrapper, R.color.white));
-//
-//        View toolbarView = findViewById(R.id.toolbarView);
-//        toolbarView.setBackgroundColor(ContextCompat.getColor(contextThemeWrapper, R.color.black));
-//        TextView toolbarTextView = findViewById(R.id.toolbarTextView);
-//        toolbarTextView.setTextColor(ContextCompat.getColor(contextThemeWrapper, R.color.white));
+    public static ThemeHandler getInstance(ActivityMainBinding mainBinding, List<Theme> themes) {
+        if (instance == null) {
+            instance = new ThemeHandler(mainBinding, themes);
+        }
+        return instance;
     }
 
     private Theme basicTheme() {
         // whole app
-        String themeName = "Basic";
+        String themeName = "BasicBlue";
         String themeTextFont = ""; // font
         String windowBackground = "@drawable/background_gradient_basic_blue";
         // toolbar
@@ -46,19 +48,19 @@ public class ThemeHandler {
         return new Theme(themeName, themeTextFont, windowBackground, toolbarBackground, toolbarTextColor, tilesBackground, tilesTextColor);
     }
 
-    public void themeSelected(String themeName) {
-        resetBackgrounds();
+    public static void initSettingsBinging(ActivitySettingsBinding settingsBinding) {
+        instance.settingsBinding = settingsBinding;
+    }
 
-        switch (themeName) {
-            case "BasicBlue":
-                binding.thumbnailBasicBlueTheme.setBackgroundResource(R.drawable.selected_theme_border);
-                break;
-            case "Halloween":
-                binding.thumbnailHalloweenTheme.setBackgroundResource(R.drawable.selected_theme_border);
-                break;
-        }
+    public void themeSelected(String themeName) {
         Theme theme = findThemeByNameInList(this.themes, themeName);
+        if (theme == null) {
+            return;
+        }
+
         setUpAppTheme(theme);
+
+        applyBorderOfActiveTheme();
     }
 
 
@@ -72,13 +74,61 @@ public class ThemeHandler {
     }
 
     public void setUpAppTheme(Theme theme) {
+        activeTheme = theme;
+
+        // Nastavení pozadí hlavní aktivity
+        mainBinding.getRoot().setBackgroundResource(getResourceId(theme.getWindowBackground()));
+
+        // Nastavení pozadí a textové barvy toolbaru
+        mainBinding.toolbar.setBackgroundResource(getResourceId(theme.getToolbarBackground()));
+        mainBinding.toolbar.setTitleTextColor(getColorResource(theme.getToolbarTextColor()));
+        // menu_main.xml
+//        mainBinding.toolbar.setPopupTheme(getResourceId(theme.getToolbarBackground()))
+
+        mainBinding.searchIcon.setBackgroundColor(getColorResource(theme.getToolbarTextColor()));
+        TileAdapter tileAdapter = TileAdapter.getInstance();
+        if (tileAdapter != null) {
+            tileAdapter.updateTheme(theme);
+        }
     }
+
 
     @SuppressLint("ResourceAsColor")
     private void resetBackgrounds() {
 //        binding.thumbnailBasicBlueTheme.setBackgroundColor(R.color.white);
 //        binding.thumbnailHalloweenTheme.setBackgroundColor(R.color.white);
-        binding.thumbnailBasicBlueTheme.setBackground(null);
-        binding.thumbnailHalloweenTheme.setBackground(null);
+        settingsBinding.thumbnailBasicBlueTheme.setBackground(null);
+        settingsBinding.thumbnailHalloweenTheme.setBackground(null);
+    }
+
+    // TODO - getIdentifier() není efektivní -> udělat jinak
+    // Helper method for getting resource ID
+    private int getResourceId(String resourceName) {
+        return mainBinding.getRoot().getContext().getResources().getIdentifier(
+                resourceName, "drawable", mainBinding.getRoot().getContext().getPackageName());
+    }
+
+    // Helper method for getting color ID
+    private int getColorResource(String colorName) {
+        return mainBinding.getRoot().getContext().getResources().getIdentifier(
+                colorName, "color", mainBinding.getRoot().getContext().getPackageName());
+    }
+
+    public Theme getActiveTheme() {
+        return activeTheme;
+    }
+
+    public void applyBorderOfActiveTheme() {
+        Log.d("ThemeHandler", "Aktivní téma: " + this.activeTheme.getThemeName());
+        resetBackgrounds();
+        
+        switch (this.activeTheme.getThemeName()) {
+            case "BasicBlue":
+                settingsBinding.thumbnailBasicBlueTheme.setBackgroundResource(R.drawable.selected_theme_border);
+                break;
+            case "Halloween":
+                settingsBinding.thumbnailHalloweenTheme.setBackgroundResource(R.drawable.selected_theme_border);
+                break;
+        }
     }
 }

@@ -18,15 +18,23 @@ public class ThemeRepository {
     private Context context;
     private ExecutorService executorService;
     private Handler mainHandler;
+    private static ThemeRepository instance;
 
     public ThemeRepository(Context context) {
-        this.context = context;
+        this.context = context.getApplicationContext(); // Use application context -> prevent memory leaks
         appDatabase = AppDatabase.getInstance(context);
         themeDao = appDatabase.themeDao();
         executorService = Executors.newSingleThreadExecutor();
         mainHandler = new Handler(Looper.getMainLooper());
 
 //        populateThemeDatabase();
+    }
+
+    public static ThemeRepository getInstance(Context context) {
+        if (instance == null) {
+            instance = new ThemeRepository(context);
+        }
+        return instance;
     }
 
     private void populateThemeDatabase() {
