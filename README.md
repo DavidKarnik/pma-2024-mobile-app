@@ -11,4 +11,5 @@ Semestrální projekt
 
 ## Vypracování:
 - [x] Mobilní aplikace pro Android
-- [ ] Propojení aplikace s databází
+- [x] Propojení aplikace s databází
+- [ ] CRUD operace
