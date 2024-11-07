@@ -14,16 +14,19 @@ public class Theme {
     // toolbar
     public String toolbarBackground;
     public String toolbarTextColor;
+    public String logoImage;
+    public String searchIcon;
     // tiles
     public String tilesBackground;
     public String tilesTextColor;
 
-    public Theme(String themeName, String themeTextFont, String windowBackground, String toolbarBackground, String toolbarTextColor, String tilesBackground, String tilesTextColor) {
+    public Theme(String themeName, String themeTextFont, String windowBackground, String toolbarBackground, String toolbarTextColor, String logoImage, String tilesBackground, String tilesTextColor) {
         this.themeName = themeName;
         this.themeTextFont = themeTextFont;
         this.windowBackground = windowBackground;
         this.toolbarBackground = toolbarBackground;
         this.toolbarTextColor = toolbarTextColor;
+        this.logoImage = logoImage;
         this.tilesBackground = tilesBackground;
         this.tilesTextColor = tilesTextColor;
     }
@@ -46,6 +49,18 @@ public class Theme {
 
     public String getToolbarTextColor() {
         return toolbarTextColor;
+    }
+
+    public String getLogoImage() {
+        return logoImage;
+    }
+
+    public String getSearchIcon() {
+        return searchIcon;
+    }
+
+    public void setSearchIcon(String searchIcon) {
+        this.searchIcon = searchIcon;
     }
 
     public String getTilesBackground() {

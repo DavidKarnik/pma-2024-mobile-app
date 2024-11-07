@@ -7,10 +7,11 @@
     app:theme="@style/Theme.Halloween.Toolbar">
 
     <ImageView
+        android:id="@+id/logoImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
         android:contentDescription="@string/app_name"
-        android:src="@drawable/hrajlogo">
-    </ImageView>
+        android:src="@drawable/hraj_logo" />
 
 </androidx.appcompat.widget.Toolbar>

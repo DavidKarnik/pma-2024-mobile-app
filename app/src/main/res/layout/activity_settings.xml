@@ -8,6 +8,7 @@
     tools:context=".SettingsActivity">
 
     <include
+        android:id="@+id/toolbar"
         layout="@layout/fragment_toolbar_basic"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -49,6 +50,7 @@
                 android:id="@+id/thumbnailHalloweenTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/selected_theme_border"
                 android:padding="10sp"
                 android:src="@drawable/thumbnail_halloween_theme" />
 

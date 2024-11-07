@@ -2,30 +2,39 @@ package com.example.hraj;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.hraj.databinding.ActivityTileDetailBinding;
+import com.example.hraj.handlers.TileDetailHandler;
+
 public class TileDetailActivity extends AppCompatActivity {
+
+    private ActivityTileDetailBinding binding;
+    private TileDetailHandler tileDetailHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tile_detail);
 
-        TextView titleTextView = findViewById(R.id.detailTitle);
-        TextView descriptionTextView = findViewById(R.id.detailDescription);
-        TextView numOfPlayersTextView = findViewById(R.id.detailNumOfPlayers);
+        binding = ActivityTileDetailBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        // Získání dat z intentu
+        tileDetailHandler = new TileDetailHandler(binding, this);
+
         Intent intent = getIntent();
         String title = intent.getStringExtra("title");
         String description = intent.getStringExtra("description");
         int numOfPlayers = intent.getIntExtra("numOfPlayers", 0);
 
-        // Nastavení dat do TextView
-        titleTextView.setText(title);
-        descriptionTextView.setText(description);
-        numOfPlayersTextView.setText("Players: " + numOfPlayers);
+        binding.detailTitle.setText(title);
+        binding.detailDescription.setText(description);
+        binding.detailNumOfPlayers.setText("Players: " + numOfPlayers);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        binding = null;
     }
 }

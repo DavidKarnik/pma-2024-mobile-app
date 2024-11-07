@@ -26,7 +26,6 @@ public class ThemeRepository {
         themeDao = appDatabase.themeDao();
         executorService = Executors.newSingleThreadExecutor();
         mainHandler = new Handler(Looper.getMainLooper());
-
 //        populateThemeDatabase();
     }
 
@@ -53,10 +52,14 @@ public class ThemeRepository {
         // toolbar
         String toolbarBackground = "@color/black";
         String toolbarTextColor = "@color/white";
+        String logoImage = "@drawable/hraj_logo";
+        String searchImage = "@android:drawable/ic_menu_search";
         // tiles
         String tilesBackground = "@color/black";
         String tilesTextColor = "@color/white";
-        themeList.add(new Theme(themeName, themeTextFont, windowBackground, toolbarBackground, toolbarTextColor, tilesBackground, tilesTextColor));
+        Theme theme = new Theme(themeName, themeTextFont, windowBackground, toolbarBackground, toolbarTextColor, logoImage, tilesBackground, tilesTextColor);
+        theme.setSearchIcon(searchImage);
+        themeList.add(theme);
 
         // whole app
         themeName = "BasicBlue";
@@ -65,10 +68,14 @@ public class ThemeRepository {
         // toolbar
         toolbarBackground = "@color/white";
         toolbarTextColor = "@color/black";
+        logoImage = "@drawable/hraj_logo_black";
+        searchImage = "@drawable/search_icon_black";
         // tiles
         tilesBackground = "@color/white";
         tilesTextColor = "@color/black";
-        themeList.add(new Theme(themeName, themeTextFont, windowBackground, toolbarBackground, toolbarTextColor, tilesBackground, tilesTextColor));
+        theme = new Theme(themeName, themeTextFont, windowBackground, toolbarBackground, toolbarTextColor, logoImage, tilesBackground, tilesTextColor);
+        theme.setSearchIcon(searchImage);
+        themeList.add(theme);
 
         return themeList;
     }

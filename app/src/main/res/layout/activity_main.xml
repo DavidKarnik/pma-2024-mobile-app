@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/hrajlogo" />
+            android:src="@drawable/hraj_logo" />
 
         <!-- Ikona lupy jako samostatné tlačítko -->
         <ImageView
@@ -30,8 +30,7 @@
             android:background="@android:color/transparent"
             android:contentDescription="@string/search_title"
             android:padding="8sp"
-            android:src="@android:drawable/ic_menu_search"
-            app:tint="@color/white" />
+            android:src="@android:drawable/ic_menu_search" />
     </androidx.appcompat.widget.Toolbar>
 
     <ExpandableListView
