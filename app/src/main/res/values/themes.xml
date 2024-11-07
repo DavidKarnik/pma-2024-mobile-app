@@ -1,6 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Theme.Hraj" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:windowBackground">@drawable/background_gradient_light_orange_red</item>
+        <item name="android:statusBarColor">@color/black</item>
     </style>
 
     <style name="Theme.Halloween.Tiles" parent="Theme.Material3.DayNight.NoActionBar">

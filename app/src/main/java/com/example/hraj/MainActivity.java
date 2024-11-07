@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
         mainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mainBinding.getRoot());
 
-        // Nastavení Toolbaru
         setUpToolbar();
 
         // init TileRepository
@@ -55,11 +54,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setUpToolbar() {
-        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-//        TextView toolbarTitle = findViewById(R.id.toolbar_title);
-//        toolbarTitle.setText(R.string.app_name);
+        // balík androidx. appcompat. app. AppCompatActivity
+        setSupportActionBar(mainBinding.toolbar);
     }
 
     /**
