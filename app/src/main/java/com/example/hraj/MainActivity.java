@@ -56,6 +56,11 @@ public class MainActivity extends AppCompatActivity {
     private void setUpToolbar() {
         // balík androidx. appcompat. app. AppCompatActivity
         setSupportActionBar(mainBinding.toolbar);
+
+        // Skrytí názvu aplikace v toolbaru
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
     }
 
     /**
