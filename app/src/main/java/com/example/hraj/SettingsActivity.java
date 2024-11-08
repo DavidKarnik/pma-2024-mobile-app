@@ -3,23 +3,16 @@ package com.example.hraj;
 import static com.example.hraj.handlers.ThemeHandler.initSettingsBinging;
 
 import android.os.Bundle;
-import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.hraj.adapters.ThemeAdapter;
 import com.example.hraj.databinding.ActivitySettingsBinding;
 import com.example.hraj.handlers.ThemeHandler;
-import com.example.hraj.models.ThemeRepository;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    private RecyclerView themeRecyclerView;
-    private ThemeAdapter themeAdapter;
-    private ThemeRepository themesRepository;
     private ThemeHandler themeHandler;
-    private ActivitySettingsBinding binding;
+    private ActivitySettingsBinding settingsBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,37 +20,23 @@ public class SettingsActivity extends AppCompatActivity {
 //        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_settings);
 
-        binding = ActivitySettingsBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        settingsBinding = ActivitySettingsBinding.inflate(getLayoutInflater());
+        setContentView(settingsBinding.getRoot());
 
-//        themesRepository = new ThemeRepository(this);
-        initSettingsBinging(binding);
+        initSettingsBinging(settingsBinding);
         loadThemes();
 
         themeHandler.applyBorderOfActiveTheme();
 
-        ImageView thumbnailBasicBlueTheme = findViewById(R.id.thumbnailBasicBlueTheme);
-        ImageView thumbnailHalloweenTheme = findViewById(R.id.thumbnailHalloweenTheme);
-
-        thumbnailBasicBlueTheme.setOnClickListener(v -> themeHandler.themeSelected("BasicBlue"));
-        thumbnailHalloweenTheme.setOnClickListener(v -> themeHandler.themeSelected("Halloween"));
-
-//        themeRecyclerView = findViewById(R.id.themeRecyclerView);
-//        themeRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-//
-//        List<Theme> themes = new ArrayList<>();
-////        themes.add(new Theme("Light", R.drawable.light_theme_preview));
-////        themes.add(new Theme("Dark", R.drawable.dark_theme_preview));
-////        themes.add(new Theme("Blue", R.drawable.blue_theme_preview));
-//
-//        themeAdapter = new ThemeAdapter(themes);
-//        themeRecyclerView.setAdapter(themeAdapter);
+        settingsBinding.thumbnailBasicBlueTheme.setOnClickListener(v -> themeHandler.themeSelected("BasicBlue"));
+        settingsBinding.thumbnailHalloweenTheme.setOnClickListener(v -> themeHandler.themeSelected("Halloween"));
     }
 
     /**
      * Statické načtení témat apliakce - styl
      * TODO - Asynchronní načtení témat a nastavení závislých komponent - téma aplikace
      * TODO jako u načítání Tiles v mainActivity
+     * TODO načítání Theme z databáze v main activity, nebo až tady ? -> teď je to v main
      */
     private void loadThemes() {
 //        themeHandler = new ThemeHandler(binding, themesRepository.loadThemesStatic());
