@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.hraj.adapters.ThemeAdapter;
 import com.example.hraj.databinding.ActivitySettingsBinding;
 import com.example.hraj.handlers.ThemeHandler;
-import com.example.hraj.utils.ThemeRepository;
+import com.example.hraj.models.ThemeRepository;
 
 public class SettingsActivity extends AppCompatActivity {
 

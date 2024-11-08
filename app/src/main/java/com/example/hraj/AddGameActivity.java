@@ -6,9 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.hraj.databinding.ActivityAddGameBinding;
 import com.example.hraj.handlers.AddGameHandler;
-import com.example.hraj.handlers.ThemeHandler;
-import com.example.hraj.utils.ThemeRepository;
-import com.example.hraj.utils.TileRepository;
 
 public class AddGameActivity extends AppCompatActivity {
 

@@ -1,11 +1,10 @@
-package com.example.hraj.utils;
+package com.example.hraj.models;
 
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 
-import com.example.hraj.models.Theme;
-import com.example.hraj.models.ThemeDao;
+import com.example.hraj.utils.AppDatabase;
 
 import java.util.ArrayList;
 import java.util.List;

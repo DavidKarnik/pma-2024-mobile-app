@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ExpandableListView;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,8 +18,8 @@ import com.example.hraj.handlers.SearchHandler;
 import com.example.hraj.handlers.SortingHandler;
 import com.example.hraj.handlers.ThemeHandler;
 import com.example.hraj.handlers.TileHandler;
-import com.example.hraj.utils.ThemeRepository;
-import com.example.hraj.utils.TileRepository;
+import com.example.hraj.models.ThemeRepository;
+import com.example.hraj.models.TileRepository;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -65,19 +64,24 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Asynchronní načtení dlaždic a nastavení závislých komponent
+     * Kaskádové použití handleru -> setUps musejí jít po sobě, PO načtení dlaždic z databáze
      */
     private void loadTiles() {
         tileRepository.loadTilesAsync(resultLoadedTiles -> {
             // Nastavení TileHandleru
             tileHandler = new TileHandler(resultLoadedTiles);
 
-            // Nastavení RecyclerView, vyhledávání a řazení po načtení dat
+            // závislé funkce
             setUpRecyclerView();
             setUpSearchHandler();
             setUpSortingHandler();
         });
     }
 
+    /**
+     * Nastavení recycler view pro vykreslení dlaždic
+     * Init tileAdapteru důležitý - kaskádové použití
+     */
     private void setUpRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -86,12 +90,17 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(tileAdapter);
     }
 
+    /**
+     * Nastavení handleru pro vyhledávání dlaždic (her) dle jejich názvu
+     */
     private void setUpSearchHandler() {
         searchHandler = new SearchHandler(this, tileHandler.getOriginalTileList(), tileAdapter);
-        ImageView searchIcon = findViewById(R.id.search_icon);
-        searchIcon.setOnClickListener(v -> searchHandler.showSearchDialog());
+        mainBinding.searchIcon.setOnClickListener(v -> searchHandler.showSearchDialog());
     }
 
+    /**
+     * Nastavení handleru pro řazení dlaždic
+     */
     private void setUpSortingHandler() {
         ExpandableListView expandableListView = findViewById(R.id.expandableListView);
         sortingHandler = new SortingHandler(this, tileHandler.getShownTileList(), tileAdapter);

@@ -7,7 +7,7 @@ import com.example.hraj.R;
 import com.example.hraj.databinding.ActivityAddGameBinding;
 import com.example.hraj.models.Theme;
 import com.example.hraj.models.Tile;
-import com.example.hraj.utils.TileRepository;
+import com.example.hraj.models.TileRepository;
 
 public class AddGameHandler {
 
