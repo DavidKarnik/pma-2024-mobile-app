@@ -1,5 +1,7 @@
 package com.example.hraj.handlers;
 
+import android.view.View;
+
 import com.example.hraj.R;
 import com.example.hraj.TileDetailActivity;
 import com.example.hraj.databinding.ActivityTileDetailBinding;
@@ -21,6 +23,7 @@ public class TileDetailHandler {
         themeHandler = ThemeHandler.getInstance(null, null);
 
         applyTheme();
+        showToolbarFunctionImages();
     }
 
     public void applyTheme() {
@@ -33,5 +36,10 @@ public class TileDetailHandler {
         tileDetailBinding.toolbar.logoImage.setImageResource(CommonUtils.getResourceId(theme.getLogoImage()));
         tileDetailBinding.toolbar.backImage.setImageResource(CommonUtils.getResourceId(theme.getImageBack()));
 
+    }
+
+    private void showToolbarFunctionImages() {
+        tileDetailBinding.toolbar.editIcon.setVisibility(View.VISIBLE);
+        tileDetailBinding.toolbar.deleteIcon.setVisibility(View.VISIBLE);
     }
 }
