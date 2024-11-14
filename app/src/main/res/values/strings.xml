@@ -22,4 +22,5 @@
     <string name="save">Uložit</string>
     <string name="difficulty">Obtížnost</string>
     <string name="toolbar_title">Hraj</string>
+    <string name="back">Zpět</string>
 </resources>

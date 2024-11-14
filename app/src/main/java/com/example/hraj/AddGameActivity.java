@@ -22,6 +22,10 @@ public class AddGameActivity extends AppCompatActivity {
         addGameHandler = new AddGameHandler(addGameBinding, this);
 
         addGameBinding.btnSave.setOnClickListener(v -> addGameHandler.saveGame());
+
+        addGameBinding.toolbar.backImage.setOnClickListener(v -> {
+            finish();
+        });
     }
 
 

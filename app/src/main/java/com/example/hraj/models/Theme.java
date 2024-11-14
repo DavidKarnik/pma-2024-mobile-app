@@ -11,6 +11,7 @@ public class Theme {
     public String themeName;
     public String themeTextFont;
     public String windowBackground;
+    public String imageBack;
     // toolbar
     public String toolbarBackground;
     public String toolbarTextColor;
@@ -20,7 +21,7 @@ public class Theme {
     public String tilesBackground;
     public String tilesTextColor;
 
-    public Theme(String themeName, String themeTextFont, String windowBackground, String toolbarBackground, String toolbarTextColor, String logoImage, String tilesBackground, String tilesTextColor) {
+    public Theme(String themeName, String themeTextFont, String windowBackground, String toolbarBackground, String toolbarTextColor, String logoImage, String tilesBackground, String tilesTextColor, String imageBack) {
         this.themeName = themeName;
         this.themeTextFont = themeTextFont;
         this.windowBackground = windowBackground;
@@ -29,6 +30,7 @@ public class Theme {
         this.logoImage = logoImage;
         this.tilesBackground = tilesBackground;
         this.tilesTextColor = tilesTextColor;
+        this.imageBack = imageBack;
     }
 
     public String getThemeName() {
@@ -73,5 +75,9 @@ public class Theme {
 
     public int getPreviewImage() {
         return 0;
+    }
+
+    public String getImageBack() {
+        return imageBack;
     }
 }

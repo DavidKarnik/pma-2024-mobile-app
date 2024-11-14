@@ -58,5 +58,6 @@ public class AddGameHandler {
         addGameBinding.toolbar.toolbar.setTitleTextColor(CommonUtils.getColorResource(theme.getToolbarTextColor()));
 
         addGameBinding.toolbar.logoImage.setImageResource(CommonUtils.getResourceId(theme.getLogoImage()));
+        addGameBinding.toolbar.backImage.setImageResource(CommonUtils.getResourceId(theme.getImageBack()));
     }
 }

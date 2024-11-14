@@ -41,6 +41,7 @@ public class ThemeHandler {
         String themeName = "Halloween";
         String themeTextFont = ""; // font
         String windowBackground = "@drawable/background_gradient_light_orange_red";
+        String imageBack = "@drawable/icon_back_64_white";
         // toolbar
         String toolbarBackground = "@color/black";
         String toolbarTextColor = "@color/white";
@@ -49,7 +50,7 @@ public class ThemeHandler {
         String tilesBackground = "@color/black";
         String tilesTextColor = "@color/white";
 
-        return new Theme(themeName, themeTextFont, windowBackground, toolbarBackground, toolbarTextColor, logoImage, tilesBackground, tilesTextColor);
+        return new Theme(themeName, themeTextFont, windowBackground, toolbarBackground, toolbarTextColor, logoImage, tilesBackground, tilesTextColor, imageBack);
     }
 
     public static void initSettingsBinging(ActivitySettingsBinding settingsBinding) {
@@ -125,6 +126,7 @@ public class ThemeHandler {
         settingsBinding.toolbar.toolbar.setTitleTextColor(CommonUtils.getColorResource(activeTheme.getToolbarTextColor()));
 
         settingsBinding.toolbar.logoImage.setImageResource(CommonUtils.getResourceId(activeTheme.getLogoImage()));
+        settingsBinding.toolbar.backImage.setImageResource(CommonUtils.getResourceId(activeTheme.getImageBack()));
     }
 
     private void setUpMainTheme() {

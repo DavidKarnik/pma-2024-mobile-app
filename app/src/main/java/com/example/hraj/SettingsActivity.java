@@ -30,6 +30,11 @@ public class SettingsActivity extends AppCompatActivity {
 
         settingsBinding.thumbnailBasicBlueTheme.setOnClickListener(v -> themeHandler.themeSelected("BasicBlue"));
         settingsBinding.thumbnailHalloweenTheme.setOnClickListener(v -> themeHandler.themeSelected("Halloween"));
+
+        settingsBinding.toolbar.backImage.setOnClickListener(v -> {
+            finish();
+        });
+
     }
 
     /**

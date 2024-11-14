@@ -17,6 +17,7 @@ import com.example.hraj.R;
 import com.example.hraj.TileDetailActivity;
 import com.example.hraj.models.Theme;
 import com.example.hraj.models.Tile;
+import com.example.hraj.utils.CommonUtils;
 
 import java.util.List;
 
@@ -55,10 +56,10 @@ public class TileAdapter extends RecyclerView.Adapter<TileAdapter.TileViewHolder
 
         if(theme != null) {
             // Apply theme colors to each tile
-            holder.cardView.setCardBackgroundColor(getColorResource(theme.getTilesBackground()));
-            holder.titleTextView.setTextColor(getColorResource(theme.getTilesTextColor()));
-            holder.numOfPlayers.setTextColor(getColorResource(theme.getTilesTextColor()));
-            holder.descriptionTextView.setTextColor(getColorResource(theme.getTilesTextColor()));
+            holder.cardView.setCardBackgroundColor(CommonUtils.getColorResource(theme.getTilesBackground()));
+            holder.titleTextView.setTextColor(CommonUtils.getColorResource(theme.getTilesTextColor()));
+            holder.numOfPlayers.setTextColor(CommonUtils.getColorResource(theme.getTilesTextColor()));
+            holder.descriptionTextView.setTextColor(CommonUtils.getColorResource(theme.getTilesTextColor()));
         }
 
         // click listener pro dlaždici
@@ -122,21 +123,21 @@ public class TileAdapter extends RecyclerView.Adapter<TileAdapter.TileViewHolder
         return instance;
     }
 
-    // Helper method to get color resource by name
-    private int getColorResource(String colorName) {
-        int colorId = context.getResources().getIdentifier(colorName, "color", context.getPackageName());
-        if (colorId == 0) {
-            // Pokud barva není nalezena, použijte výchozí bílou nebo jinou barvu
-            return context.getResources().getColor(R.color.white, null);
-        }
-        return context.getResources().getColor(colorId, null);
-    }
-
-
-    private int getResourceId(String resourceName) {
-        return context.getResources().getIdentifier(
-                resourceName, "drawable", context.getPackageName());
-    }
+//    // Helper method to get color resource by name
+//    private int getColorResource(String colorName) {
+//        int colorId = context.getResources().getIdentifier(colorName, "color", context.getPackageName());
+//        if (colorId == 0) {
+//            // Pokud barva není nalezena, použijte výchozí bílou nebo jinou barvu
+//            return context.getResources().getColor(R.color.white, null);
+//        }
+//        return context.getResources().getColor(colorId, null);
+//    }
+//
+//
+//    private int getResourceId(String resourceName) {
+//        return context.getResources().getIdentifier(
+//                resourceName, "drawable", context.getPackageName());
+//    }
 
     @SuppressLint("NotifyDataSetChanged")
     public void updateTheme(Theme newTheme) {

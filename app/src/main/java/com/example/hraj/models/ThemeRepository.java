@@ -48,6 +48,7 @@ public class ThemeRepository {
         String themeName = "Halloween";
         String themeTextFont = ""; // font
         String windowBackground = "@drawable/background_gradient_light_orange_red";
+        String imageBack = "@drawable/icon_back_64_white";
         // toolbar
         String toolbarBackground = "@color/black";
         String toolbarTextColor = "@color/white";
@@ -56,7 +57,7 @@ public class ThemeRepository {
         // tiles
         String tilesBackground = "@color/black";
         String tilesTextColor = "@color/white";
-        Theme theme = new Theme(themeName, themeTextFont, windowBackground, toolbarBackground, toolbarTextColor, logoImage, tilesBackground, tilesTextColor);
+        Theme theme = new Theme(themeName, themeTextFont, windowBackground, toolbarBackground, toolbarTextColor, logoImage, tilesBackground, tilesTextColor, imageBack);
         theme.setSearchIcon(searchImage);
         themeList.add(theme);
 
@@ -64,6 +65,7 @@ public class ThemeRepository {
         themeName = "BasicBlue";
         themeTextFont = ""; // font
         windowBackground = "@drawable/background_gradient_basic_blue";
+        imageBack = "@drawable/icon_back_64";
         // toolbar
         toolbarBackground = "@color/white";
         toolbarTextColor = "@color/black";
@@ -72,7 +74,7 @@ public class ThemeRepository {
         // tiles
         tilesBackground = "@color/white";
         tilesTextColor = "@color/black";
-        theme = new Theme(themeName, themeTextFont, windowBackground, toolbarBackground, toolbarTextColor, logoImage, tilesBackground, tilesTextColor);
+        theme = new Theme(themeName, themeTextFont, windowBackground, toolbarBackground, toolbarTextColor, logoImage, tilesBackground, tilesTextColor, imageBack);
         theme.setSearchIcon(searchImage);
         themeList.add(theme);
 

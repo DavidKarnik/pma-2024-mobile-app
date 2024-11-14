@@ -30,6 +30,10 @@ public class TileDetailActivity extends AppCompatActivity {
         binding.detailTitle.setText(title);
         binding.detailDescription.setText(description);
         binding.detailNumOfPlayers.setText("Players: " + numOfPlayers);
+
+        binding.toolbar.backImage.setOnClickListener(v -> {
+            finish();
+        });
     }
 
     @Override
