@@ -20,6 +20,7 @@ import com.example.hraj.handlers.ThemeHandler;
 import com.example.hraj.handlers.TileHandler;
 import com.example.hraj.models.ThemeRepository;
 import com.example.hraj.models.TileRepository;
+import com.example.hraj.utils.CommonUtils;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -39,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mainBinding.getRoot());
+
+        CommonUtils.initializeAppContext(this);
 
         setUpToolbar();
 

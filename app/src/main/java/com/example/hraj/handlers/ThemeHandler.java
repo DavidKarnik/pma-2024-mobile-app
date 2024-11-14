@@ -9,6 +9,7 @@ import com.example.hraj.databinding.ActivityAddGameBinding;
 import com.example.hraj.databinding.ActivityMainBinding;
 import com.example.hraj.databinding.ActivitySettingsBinding;
 import com.example.hraj.models.Theme;
+import com.example.hraj.utils.CommonUtils;
 
 import java.util.List;
 
@@ -99,19 +100,6 @@ public class ThemeHandler {
         settingsBinding.thumbnailHalloweenTheme.setBackground(null);
     }
 
-    // TODO - getIdentifier() není efektivní -> udělat jinak
-    // Helper method for getting resource ID
-    private int getResourceId(String resourceName) {
-        return mainBinding.getRoot().getContext().getResources().getIdentifier(
-                resourceName, "drawable", mainBinding.getRoot().getContext().getPackageName());
-    }
-
-    // Helper method for getting color ID
-    private int getColorResource(String colorName) {
-        return mainBinding.getRoot().getContext().getResources().getIdentifier(
-                colorName, "color", mainBinding.getRoot().getContext().getPackageName());
-    }
-
     public Theme getActiveTheme() {
         return activeTheme;
     }
@@ -131,28 +119,28 @@ public class ThemeHandler {
     }
 
     private void setUpSettingsTheme() {
-        settingsBinding.getRoot().setBackgroundResource(getResourceId(activeTheme.getWindowBackground()));
+        settingsBinding.getRoot().setBackgroundResource(CommonUtils.getResourceId(activeTheme.getWindowBackground()));
 
-        settingsBinding.toolbar.toolbar.setBackgroundResource(getResourceId(activeTheme.getToolbarBackground()));
-        settingsBinding.toolbar.toolbar.setTitleTextColor(getColorResource(activeTheme.getToolbarTextColor()));
+        settingsBinding.toolbar.toolbar.setBackgroundResource(CommonUtils.getResourceId(activeTheme.getToolbarBackground()));
+        settingsBinding.toolbar.toolbar.setTitleTextColor(CommonUtils.getColorResource(activeTheme.getToolbarTextColor()));
 
-        settingsBinding.toolbar.logoImage.setImageResource(getResourceId(activeTheme.getLogoImage()));
+        settingsBinding.toolbar.logoImage.setImageResource(CommonUtils.getResourceId(activeTheme.getLogoImage()));
     }
 
     private void setUpMainTheme() {
         // Nastavení pozadí hlavní aktivity
-        mainBinding.getRoot().setBackgroundResource(getResourceId(activeTheme.getWindowBackground()));
+        mainBinding.getRoot().setBackgroundResource(CommonUtils.getResourceId(activeTheme.getWindowBackground()));
 
         // Nastavení pozadí a textové barvy toolbaru
-        mainBinding.toolbar.setBackgroundResource(getResourceId(activeTheme.getToolbarBackground()));
-        mainBinding.toolbar.setTitleTextColor(getColorResource(activeTheme.getToolbarTextColor()));
+        mainBinding.toolbar.setBackgroundResource(CommonUtils.getResourceId(activeTheme.getToolbarBackground()));
+        mainBinding.toolbar.setTitleTextColor(CommonUtils.getColorResource(activeTheme.getToolbarTextColor()));
         // menu_main.xml
 //        mainBinding.toolbar.setPopupTheme(getResourceId(activeTheme.getToolbarBackground()))
 
-        mainBinding.logoImage.setImageResource(getResourceId(activeTheme.getLogoImage()));
+        mainBinding.logoImage.setImageResource(CommonUtils.getResourceId(activeTheme.getLogoImage()));
 
 //        mainBinding.searchIcon.setBackgroundColor(getColorResource(activeTheme.getToolbarTextColor()));
-        mainBinding.searchIcon.setImageResource(getResourceId(activeTheme.getSearchIcon()));
+        mainBinding.searchIcon.setImageResource(CommonUtils.getResourceId(activeTheme.getSearchIcon()));
     }
 
     private void setUpTileTheme() {

@@ -3,11 +3,11 @@ package com.example.hraj.handlers;
 import android.widget.Toast;
 
 import com.example.hraj.AddGameActivity;
-import com.example.hraj.R;
 import com.example.hraj.databinding.ActivityAddGameBinding;
 import com.example.hraj.models.Theme;
 import com.example.hraj.models.Tile;
 import com.example.hraj.models.TileRepository;
+import com.example.hraj.utils.CommonUtils;
 
 public class AddGameHandler {
 
@@ -49,30 +49,14 @@ public class AddGameHandler {
 
     public void applyTheme() {
         Theme theme = themeHandler.getActiveTheme();
-//        addGameBinding.addGameLayout.setBackgroundColor(getColorResource(theme.getWindowBackground()));
-//        addGameBinding.toolbar.toolbar.setBackgroundColor(getColorResource(theme.getToolbarBackground()));
+//        addGameBinding.addGameLayout.setBackgroundColor(CommonUtils.getColorResource(theme.getWindowBackground()));
+//        addGameBinding.toolbar.toolbar.setBackgroundColor(CommonUtils.getColorResource(theme.getToolbarBackground()));
 
-        addGameBinding.getRoot().setBackgroundResource(getResourceId(theme.getWindowBackground()));
+        addGameBinding.getRoot().setBackgroundResource(CommonUtils.getResourceId(theme.getWindowBackground()));
 
-        addGameBinding.toolbar.toolbar.setBackgroundResource(getResourceId(theme.getToolbarBackground()));
-        addGameBinding.toolbar.toolbar.setTitleTextColor(getColorResource(theme.getToolbarTextColor()));
+        addGameBinding.toolbar.toolbar.setBackgroundResource(CommonUtils.getResourceId(theme.getToolbarBackground()));
+        addGameBinding.toolbar.toolbar.setTitleTextColor(CommonUtils.getColorResource(theme.getToolbarTextColor()));
 
-        addGameBinding.toolbar.logoImage.setImageResource(getResourceId(theme.getLogoImage()));
-    }
-
-    // Helper method to get color resource by name
-    private int getColorResource(String colorName) {
-        int colorId = context.getResources().getIdentifier(colorName, "color", context.getPackageName());
-        if (colorId == 0) {
-            // Pokud barva není nalezena, použijte výchozí bílou nebo jinou barvu
-            return context.getResources().getColor(R.color.white, null);
-        }
-        return context.getResources().getColor(colorId, null);
-    }
-
-
-    private int getResourceId(String resourceName) {
-        return context.getResources().getIdentifier(
-                resourceName, "drawable", context.getPackageName());
+        addGameBinding.toolbar.logoImage.setImageResource(CommonUtils.getResourceId(theme.getLogoImage()));
     }
 }
