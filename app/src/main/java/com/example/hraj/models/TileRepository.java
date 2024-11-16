@@ -12,17 +12,16 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class TileRepository {
-    private AppDatabase appDatabase;
+
+    private static TileRepository instance;
     private TileDao tileDao;
-    private Context context;
     private ExecutorService executorService;
     //    Each Handler instance is associated with a single thread
     //    Handler umožňuje komunikaci mezi různými vlákny
     private Handler mainHandler;
 
-    public TileRepository(Context context) {
-        this.context = context;
-        appDatabase = AppDatabase.getInstance(context);
+    public TileRepository(Context appContext) {
+        AppDatabase appDatabase = AppDatabase.getInstance(appContext);
         tileDao = appDatabase.tileDao();
 
         // Executor pro asynchronní operace
@@ -35,6 +34,14 @@ public class TileRepository {
 
         // Naplnění databáze dlaždicemi
 //        populateDatabase();
+    }
+
+    // Singleton metoda pro získání instance
+    public static synchronized TileRepository getInstance(Context context) {
+        if (instance == null) {
+            instance = new TileRepository(context.getApplicationContext());
+        }
+        return instance;
     }
 
     private void populateDatabase() {
@@ -88,4 +95,14 @@ public class TileRepository {
         });
     }
 
+    public void deleteTileByIdAsync(int tileId, Callback<Boolean> callback) {
+        executorService.execute(() -> {
+            try {
+                tileDao.deleteTileById(tileId);
+                mainHandler.post(() -> callback.onComplete(true));
+            } catch (Exception e) {
+                mainHandler.post(() -> callback.onComplete(false));
+            }
+        });
+    }
 }

@@ -2,6 +2,7 @@ package com.example.hraj;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -33,6 +34,19 @@ public class TileDetailActivity extends AppCompatActivity {
 
         binding.toolbar.backImage.setOnClickListener(v -> {
             finish();
+        });
+
+        binding.toolbar.editIcon.setOnClickListener(v -> {
+
+        });
+
+        binding.toolbar.deleteIcon.setOnClickListener(v -> {
+            int id = intent.getIntExtra("tileId", -1);
+            if (id == -1) {
+                Toast.makeText(this, "ID není dostupné nebo je neplatné! (Výchozí hodnota -1)", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            tileDetailHandler.editIconClicked(id);
         });
     }
 

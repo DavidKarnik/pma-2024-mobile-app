@@ -64,12 +64,13 @@ public class TileAdapter extends RecyclerView.Adapter<TileAdapter.TileViewHolder
 
         // click listener pro dlaždici
         holder.itemView.setOnClickListener(v -> {
-            Toast.makeText(v.getContext(), "Clicked on: " + tile.getTitle(), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(v.getContext(), "Clicked on: " + tile.getTitle(), Toast.LENGTH_SHORT).show();
 
             // Vytvoření intentu pro spuštění nové aktivity
             Intent intent = new Intent(v.getContext(), TileDetailActivity.class);
 
             // Předání dat do intentu
+            intent.putExtra("tileId", tile.getId());
             intent.putExtra("title", tile.getTitle());
             intent.putExtra("description", tile.getDescription());
             intent.putExtra("numOfPlayers", tile.getNumOfPlayers());
@@ -122,22 +123,6 @@ public class TileAdapter extends RecyclerView.Adapter<TileAdapter.TileViewHolder
     public static TileAdapter getInstance() {
         return instance;
     }
-
-//    // Helper method to get color resource by name
-//    private int getColorResource(String colorName) {
-//        int colorId = context.getResources().getIdentifier(colorName, "color", context.getPackageName());
-//        if (colorId == 0) {
-//            // Pokud barva není nalezena, použijte výchozí bílou nebo jinou barvu
-//            return context.getResources().getColor(R.color.white, null);
-//        }
-//        return context.getResources().getColor(colorId, null);
-//    }
-//
-//
-//    private int getResourceId(String resourceName) {
-//        return context.getResources().getIdentifier(
-//                resourceName, "drawable", context.getPackageName());
-//    }
 
     @SuppressLint("NotifyDataSetChanged")
     public void updateTheme(Theme newTheme) {

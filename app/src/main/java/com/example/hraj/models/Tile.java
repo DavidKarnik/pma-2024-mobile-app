@@ -50,4 +50,8 @@ public class Tile {
     public void setShortDescription(String shortDescription) {
         this.shortDescription = shortDescription;
     }
+
+    public int getId() {
+        return id;
+    }
 }

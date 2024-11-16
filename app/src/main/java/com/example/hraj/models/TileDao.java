@@ -31,6 +31,9 @@ public interface TileDao {
     @Query("SELECT * FROM tiles WHERE id = :tileId")
     Tile getTileById(int tileId);
 
+    @Query("DELETE FROM tiles WHERE id = :tileId")
+    void deleteTileById(int tileId);
+
     // Vymazání všech dlaždic z databáze
     @Query("DELETE FROM tiles")
     void deleteAllTiles();
