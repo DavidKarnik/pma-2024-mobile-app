@@ -72,7 +72,9 @@ public class MainActivity extends AppCompatActivity {
     private void loadTiles() {
         tileRepository.loadTilesAsync(resultLoadedTiles -> {
             // Nastavení TileHandleru
-            tileHandler = new TileHandler(resultLoadedTiles);
+            tileHandler = TileHandler.getInstance();
+            tileHandler.initialize(resultLoadedTiles); // Inicializace s daty z databáze
+
 
             // závislé funkce
             setUpRecyclerView();
@@ -143,14 +145,32 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     @Override
     protected void onResume() {
         super.onResume();
         // +tileHandler != null -> inicializuje se asynchronně, takže kontrola, zda už je inicializován
         if (tileHandler != null && tileHandler.isTileListChanged()) {
-            tileHandler.resetTileList();
-            tileAdapter.notifyDataSetChanged(); // Upozornění adapteru, že se data změnila
+            tileListChanged();
         }
+    }
+
+    // TODO Jde to určitě udělat lépe :(
+    // TODO jednotnější notify, že se tileList změnil
+    // TODO -> všude dát odkaz na jednotnou instanci tileHandler s jednotným tileList ?
+    @SuppressLint("NotifyDataSetChanged")
+    private void tileListChanged() {
+//        Toast.makeText(this, "isTileListChanged = " + tileHandler.isTileListChanged(), Toast.LENGTH_SHORT).show();
+
+        tileRepository.loadTilesAsync(resultLoadedTiles -> {
+
+            tileHandler.updateTileList(resultLoadedTiles);
+
+            searchHandler.updateTileList(resultLoadedTiles);
+
+            sortingHandler.updateTileList(resultLoadedTiles);
+
+            tileAdapter.updateTileList(resultLoadedTiles);
+            tileAdapter.notifyDataSetChanged();
+        });
     }
 }

@@ -56,4 +56,9 @@ public class SearchHandler {
             Toast.makeText(context, context.getString(R.string.no_results_found), Toast.LENGTH_SHORT).show();
         }
     }
+
+    public void updateTileList(List<Tile> newTileList) {
+        originalTileList.clear();
+        originalTileList.addAll(newTileList);
+    }
 }

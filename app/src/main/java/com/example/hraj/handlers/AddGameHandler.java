@@ -1,6 +1,6 @@
 package com.example.hraj.handlers;
 
-import android.widget.Toast;
+import android.util.Log;
 
 import com.example.hraj.AddGameActivity;
 import com.example.hraj.databinding.ActivityAddGameBinding;
@@ -39,10 +39,15 @@ public class AddGameHandler {
         // Asynchronní uložení dlaždice do databáze
         tileRepository.insertTileAsync(newTile, success -> {
             if (success) {
-                Toast.makeText(context, "Hra uložena!", Toast.LENGTH_SHORT).show();
+                // toto běží asynchronně na jiném jádře než hlavním uni .. nejde volat Toast -> chyba
+//                Toast.makeText(context, "Hra uložena!", Toast.LENGTH_SHORT).show();
+                Log.d("ADDGAME", "Game added successfully!");
+                // spustí dataHasChanged v main aktivitě
+                TileHandler.getInstance().clearTileList();
                 context.finish(); // Zavření aktivity
             } else {
-                Toast.makeText(context, "Nepodařilo se uložit hru.", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "Nepodařilo se uložit hru.", Toast.LENGTH_SHORT).show();
+                Log.e("ADDGAME", "Game added failed!");
             }
         });
     }

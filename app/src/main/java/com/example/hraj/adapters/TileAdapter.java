@@ -40,6 +40,23 @@ public class TileAdapter extends RecyclerView.Adapter<TileAdapter.TileViewHolder
         this.theme = theme;
     }
 
+    // Static method to get a single instance of the adapter
+    public static TileAdapter getInstance(Context context, List<Tile> tileList, Theme theme) {
+        if (instance == null) {
+            instance = new TileAdapter(context, tileList, theme);
+        }
+        return instance;
+    }
+
+    // Metoda pro reset instance, pokud se seznam změní
+    public static void resetInstance() {
+        instance = null;
+    }
+
+    public static TileAdapter getInstance() {
+        return instance;
+    }
+
     @NonNull
     @Override
     public TileViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -105,23 +122,6 @@ public class TileAdapter extends RecyclerView.Adapter<TileAdapter.TileViewHolder
         this.tileList.clear();
         this.tileList.addAll(newTileList);
         notifyDataSetChanged();
-    }
-
-    // Static method to get a single instance of the adapter
-    public static TileAdapter getInstance(Context context, List<Tile> tileList, Theme theme) {
-        if (instance == null) {
-            instance = new TileAdapter(context, tileList, theme);
-        }
-        return instance;
-    }
-
-    // Metoda pro reset instance, pokud se seznam změní
-    public static void resetInstance() {
-        instance = null;
-    }
-
-    public static TileAdapter getInstance() {
-        return instance;
     }
 
     @SuppressLint("NotifyDataSetChanged")

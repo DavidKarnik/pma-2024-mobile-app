@@ -54,5 +54,10 @@ public class SortingHandler {
         expandableListDetail.put(context.getString(R.string.sorting_options), sortingOptions);
         return expandableListDetail;
     }
+
+    public void updateTileList(List<Tile> newTileList) {
+        tileList.clear();
+        tileList.addAll(newTileList);
+    }
 }
 

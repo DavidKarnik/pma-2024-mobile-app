@@ -47,11 +47,11 @@ public class TileDetailHandler {
     }
 
     public void editIconClicked(int id) {
-
-
         tileRepository.deleteTileByIdAsync(id, success -> {
             if (success) {
                 Toast.makeText(context, "Hra s ID " + id + " byla vymazána!", Toast.LENGTH_SHORT).show();
+                // updated Tile List -> spustí notifyDataHasChanged v main
+                TileHandler.getInstance().clearTileList();
                 context.finish(); // Zavření aktivity
             } else {
                 Toast.makeText(context, "Nepodařilo se vymazat hru s ID " + id + ".", Toast.LENGTH_SHORT).show();
