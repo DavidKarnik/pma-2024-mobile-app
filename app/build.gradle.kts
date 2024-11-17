@@ -12,7 +12,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "my.Id.On.Google.PlayStore"
+        applicationId = "com.example.hraj"
         minSdk = 28
         targetSdk = 34
         versionCode = 1
