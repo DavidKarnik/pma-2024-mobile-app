@@ -105,4 +105,16 @@ public class TileRepository {
             }
         });
     }
+
+    public void updateTileAsync(Tile tile, Callback<Boolean> callback) {
+        executorService.execute(() -> {
+            try {
+                tileDao.update(tile);
+                mainHandler.post(() -> callback.onComplete(true));
+            } catch (Exception e) {
+                mainHandler.post(() -> callback.onComplete(false));
+            }
+        });
+    }
+
 }

@@ -37,8 +37,15 @@ public class TileDetailActivity extends AppCompatActivity {
             finish();
         });
 
+        int id = intent.getIntExtra("tileId", -1);
+        if (id == -1) {
+            Toast.makeText(this, "ID není dostupné nebo je neplatné! (Výchozí hodnota -1)", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         binding.toolbar.editIcon.setOnClickListener(v -> {
             tileDetailHandler.showEditDialog(
+                    id,
                     title,
                     shortDescription,
                     description,
@@ -48,11 +55,6 @@ public class TileDetailActivity extends AppCompatActivity {
 
 
         binding.toolbar.deleteIcon.setOnClickListener(v -> {
-            int id = intent.getIntExtra("tileId", -1);
-            if (id == -1) {
-                Toast.makeText(this, "ID není dostupné nebo je neplatné! (Výchozí hodnota -1)", Toast.LENGTH_SHORT).show();
-                return;
-            }
             tileDetailHandler.editIconClicked(id);
         });
     }

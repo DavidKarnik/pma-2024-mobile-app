@@ -29,7 +29,7 @@ public interface ThemeDao {
 
     // Načtení téma podle ID
     @Query("SELECT * FROM themes WHERE id = :themeId")
-    Tile getThemeById(int themeId);
+    Theme getThemeById(int themeId);
 
     // Vymazání všech témat z databáze
     @Query("DELETE FROM themes")

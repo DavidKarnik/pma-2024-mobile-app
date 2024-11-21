@@ -10,6 +10,7 @@ import com.example.hraj.R;
 import com.example.hraj.TileDetailActivity;
 import com.example.hraj.databinding.ActivityTileDetailBinding;
 import com.example.hraj.models.Theme;
+import com.example.hraj.models.Tile;
 import com.example.hraj.models.TileRepository;
 import com.example.hraj.utils.CommonUtils;
 
@@ -50,7 +51,7 @@ public class TileDetailHandler {
         tileDetailBinding.toolbar.deleteIcon.setVisibility(View.VISIBLE);
     }
 
-    public void showEditDialog(String currentTitle, String currentShortDescription, String currentDescription, int currentNumOfPlayers) {
+    public void showEditDialog(int id, String currentTitle, String currentShortDescription, String currentDescription, int currentNumOfPlayers) {
         // Načtení layoutu dialogu
         View dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_edit_tile, null);
 
@@ -67,11 +68,12 @@ public class TileDetailHandler {
 
         // Vytvoření dialogu
         new AlertDialog.Builder(context)
-                .setTitle("Edit Tile")
+                .setTitle(context.getString(R.string.editOfTile)) // načtení string resource
                 .setView(dialogView)
-                .setPositiveButton("Save", (dialog, which) -> {
+                .setPositiveButton(context.getString(R.string.save), (dialog, which) -> {
                     // Získání hodnot z dialogu
                     String newTitle = editTitle.getText().toString();
+                    String newShortDescription = editShortDescription.getText().toString();
                     String newDescription = editDescription.getText().toString();
                     int newNumOfPlayers = Integer.parseInt(editNumOfPlayers.getText().toString());
 
@@ -80,16 +82,27 @@ public class TileDetailHandler {
                     tileDetailBinding.detailDescription.setText(newDescription);
                     tileDetailBinding.detailNumOfPlayers.setText("Players: " + newNumOfPlayers);
 
-                    // Další akce, např. uložení do databáze
-                    saveEditedTile(newTitle, newDescription, newNumOfPlayers);
+                    // uložení do databáze
+                    saveEditedTile(id, newTitle, newShortDescription, newDescription, newNumOfPlayers);
                 })
-                .setNegativeButton("Cancel", null)
+                .setNegativeButton(context.getString(R.string.cancel), null)
                 .show();
     }
 
-    public void saveEditedTile(String title, String description, int numOfPlayers) {
+    public void saveEditedTile(int id, String title, String currentShortDescription, String description, int numOfPlayers) {
         // Např. uložení do databáze nebo jiné akce
-        Toast.makeText(context, "Tile updated: " + title, Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Tile updated: " + title + ", id: " + id, Toast.LENGTH_SHORT).show();
+        Tile updatedTile = new Tile(id, title, numOfPlayers, currentShortDescription, description);
+        tileRepository.updateTileAsync(updatedTile, success -> {
+            if (success) {
+                // updated Tile List -> spustí notifyDataHasChanged v main
+                TileHandler.getInstance().clearTileList();
+                Toast.makeText(context, "Tile updated successfully!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(context, "Failed to update tile.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
 

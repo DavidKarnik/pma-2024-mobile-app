@@ -5,29 +5,63 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/game_title"
+        android:textSize="20sp" />
+
     <EditText
         android:id="@+id/editTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Edit Title" />
+        android:hint="Edit Title"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:padding="12dp" />
 
-    <EditText
-        android:id="@+id/editShortDescription"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Edit Short Description" />
-
-    <EditText
-        android:id="@+id/editDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Edit Description" />
+        android:text="@string/number_of_players"
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/editNumOfPlayers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Number of Players"
-        android:inputType="number" />
+        android:inputType="number"
+        android:minHeight="48dp"
+        android:padding="12dp" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/short_description"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/editShortDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Edit Short Description"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:padding="12dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/description"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/editDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Edit Description"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:padding="12dp" />
 </LinearLayout>

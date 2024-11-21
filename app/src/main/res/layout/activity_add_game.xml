@@ -21,7 +21,7 @@
             android:id="@+id/gameTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/enter_game_title"
+            android:hint="@string/game_title"
             android:inputType="text"
             android:minHeight="48dp"
             android:padding="12dp" />
@@ -65,7 +65,8 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/green"
                 android:text="@string/save"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:layout_margin="16sp"/>
         </LinearLayout>
 
     </LinearLayout>

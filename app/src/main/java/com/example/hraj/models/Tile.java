@@ -1,6 +1,7 @@
 package com.example.hraj.models;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "tiles")
@@ -12,7 +13,18 @@ public class Tile {
     private String shortDescription;
     private String description;
 
+    // Konstruktor používaný Room
     public Tile(String title, String shortDescription, String description, Integer numOfPlayers) {
+        this.title = title;
+        this.numOfPlayers = numOfPlayers;
+        this.shortDescription = shortDescription;
+        this.description = description;
+    }
+
+    // Konstruktor ignorovaný Room
+    @Ignore
+    public Tile(int id, String title, Integer numOfPlayers, String shortDescription, String description) {
+        this.id = id;
         this.title = title;
         this.numOfPlayers = numOfPlayers;
         this.shortDescription = shortDescription;
