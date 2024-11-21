@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/editTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Edit Title" />
+
+    <EditText
+        android:id="@+id/editShortDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Edit Short Description" />
+
+    <EditText
+        android:id="@+id/editDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Edit Description" />
+
+    <EditText
+        android:id="@+id/editNumOfPlayers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Number of Players"
+        android:inputType="number" />
+
+</LinearLayout>

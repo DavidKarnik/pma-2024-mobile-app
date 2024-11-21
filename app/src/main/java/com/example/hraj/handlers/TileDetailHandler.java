@@ -1,8 +1,12 @@
 package com.example.hraj.handlers;
 
+import android.app.AlertDialog;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.hraj.R;
 import com.example.hraj.TileDetailActivity;
 import com.example.hraj.databinding.ActivityTileDetailBinding;
 import com.example.hraj.models.Theme;
@@ -16,9 +20,9 @@ public class TileDetailHandler {
     private TileRepository tileRepository;
     private ThemeHandler themeHandler;
 
-    public TileDetailHandler(ActivityTileDetailBinding addGameBinding, TileDetailActivity addGameActivity) {
+    public TileDetailHandler(ActivityTileDetailBinding tileDetailBinding, TileDetailActivity addGameActivity) {
         this.context = addGameActivity;
-        this.tileDetailBinding = addGameBinding;
+        this.tileDetailBinding = tileDetailBinding;
 
         tileRepository = TileRepository.getInstance(context);
 
@@ -45,6 +49,49 @@ public class TileDetailHandler {
         tileDetailBinding.toolbar.editIcon.setVisibility(View.VISIBLE);
         tileDetailBinding.toolbar.deleteIcon.setVisibility(View.VISIBLE);
     }
+
+    public void showEditDialog(String currentTitle, String currentShortDescription, String currentDescription, int currentNumOfPlayers) {
+        // Načtení layoutu dialogu
+        View dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_edit_tile, null);
+
+        EditText editTitle = dialogView.findViewById(R.id.editTitle);
+        EditText editShortDescription = dialogView.findViewById(R.id.editShortDescription);
+        EditText editDescription = dialogView.findViewById(R.id.editDescription);
+        EditText editNumOfPlayers = dialogView.findViewById(R.id.editNumOfPlayers);
+
+        // Předvyplnění aktuálními hodnotami
+        editTitle.setText(currentTitle);
+        editShortDescription.setText(currentShortDescription);
+        editDescription.setText(currentDescription);
+        editNumOfPlayers.setText(String.valueOf(currentNumOfPlayers));
+
+        // Vytvoření dialogu
+        new AlertDialog.Builder(context)
+                .setTitle("Edit Tile")
+                .setView(dialogView)
+                .setPositiveButton("Save", (dialog, which) -> {
+                    // Získání hodnot z dialogu
+                    String newTitle = editTitle.getText().toString();
+                    String newDescription = editDescription.getText().toString();
+                    int newNumOfPlayers = Integer.parseInt(editNumOfPlayers.getText().toString());
+
+                    // Aktualizace UI v aktivitě přes binding
+                    tileDetailBinding.detailTitle.setText(newTitle);
+                    tileDetailBinding.detailDescription.setText(newDescription);
+                    tileDetailBinding.detailNumOfPlayers.setText("Players: " + newNumOfPlayers);
+
+                    // Další akce, např. uložení do databáze
+                    saveEditedTile(newTitle, newDescription, newNumOfPlayers);
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
+    }
+
+    public void saveEditedTile(String title, String description, int numOfPlayers) {
+        // Např. uložení do databáze nebo jiné akce
+        Toast.makeText(context, "Tile updated: " + title, Toast.LENGTH_SHORT).show();
+    }
+
 
     public void editIconClicked(int id) {
         tileRepository.deleteTileByIdAsync(id, success -> {

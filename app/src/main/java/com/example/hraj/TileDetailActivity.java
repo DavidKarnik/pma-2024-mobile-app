@@ -25,6 +25,7 @@ public class TileDetailActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String title = intent.getStringExtra("title");
+        String shortDescription = intent.getStringExtra("shortDescription");
         String description = intent.getStringExtra("description");
         int numOfPlayers = intent.getIntExtra("numOfPlayers", 0);
 
@@ -37,8 +38,14 @@ public class TileDetailActivity extends AppCompatActivity {
         });
 
         binding.toolbar.editIcon.setOnClickListener(v -> {
-
+            tileDetailHandler.showEditDialog(
+                    title,
+                    shortDescription,
+                    description,
+                    numOfPlayers
+            );
         });
+
 
         binding.toolbar.deleteIcon.setOnClickListener(v -> {
             int id = intent.getIntExtra("tileId", -1);

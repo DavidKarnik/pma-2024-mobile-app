@@ -89,6 +89,7 @@ public class TileAdapter extends RecyclerView.Adapter<TileAdapter.TileViewHolder
             // Předání dat do intentu
             intent.putExtra("tileId", tile.getId());
             intent.putExtra("title", tile.getTitle());
+            intent.putExtra("shortDescription", tile.getShortDescription());
             intent.putExtra("description", tile.getDescription());
             intent.putExtra("numOfPlayers", tile.getNumOfPlayers());
 
