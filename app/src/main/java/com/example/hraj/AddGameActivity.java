@@ -1,6 +1,8 @@
 package com.example.hraj;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,8 +28,58 @@ public class AddGameActivity extends AppCompatActivity {
         addGameBinding.toolbar.backImage.setOnClickListener(v -> {
             finish();
         });
+
+        setupLiveTextEditedListeners();
     }
 
+    private void setupLiveTextEditedListeners() {
+        // Naslouchej změnám textu
+        addGameBinding.gameTitle.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                addGameBinding.tileItem.tileTitle.setText(s.toString());
+//                addGameBinding.tileItem.tileDescription.setText(s);
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
+        addGameBinding.numOfPlayers.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                addGameBinding.tileItem.numOfPlayers.setText(s.toString());
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
+        addGameBinding.shortDescription.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                addGameBinding.tileItem.tileDescription.setText(s.toString());
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+    }
 
     @Override
     protected void onDestroy() {

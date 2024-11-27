@@ -63,11 +63,17 @@
                 android:id="@+id/btnSave"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="16sp"
                 android:backgroundTint="@color/green"
                 android:text="@string/save"
-                android:textSize="18sp"
-                android:layout_margin="16sp"/>
+                android:textSize="18sp" />
         </LinearLayout>
 
+        <include
+            android:id="@+id/tileItem"
+            layout="@layout/fragment_tile_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20sp" />
     </LinearLayout>
 </LinearLayout>

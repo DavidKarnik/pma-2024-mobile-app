@@ -64,5 +64,12 @@ public class AddGameHandler {
 
         addGameBinding.toolbar.logoImage.setImageResource(CommonUtils.getResourceId(theme.getLogoImage()));
         addGameBinding.toolbar.backImage.setImageResource(CommonUtils.getResourceId(theme.getImageBack()));
+
+
+        // Apply theme colors to tile
+        addGameBinding.tileItem.cardView.setCardBackgroundColor(CommonUtils.getColorResource(theme.getTilesBackground()));
+        addGameBinding.tileItem.tileTitle.setTextColor(CommonUtils.getColorResource(theme.getTilesTextColor()));
+        addGameBinding.tileItem.numOfPlayers.setTextColor(CommonUtils.getColorResource(theme.getTilesTextColor()));
+        addGameBinding.tileItem.tileDescription.setTextColor(CommonUtils.getColorResource(theme.getTilesTextColor()));
     }
 }
