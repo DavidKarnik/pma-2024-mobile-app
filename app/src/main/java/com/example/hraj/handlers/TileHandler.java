@@ -50,6 +50,9 @@ public class TileHandler {
     }
 
     // Vyčištění aktuálního seznamu
+    // TODO ošetření stavu -> když je databáze po startu úplně prázdná a přidá se hra (Tile)
+    //  zavolá se toto, ale oba listy jsou tedy stále prázdné, nedojde k refresh recyclerview
+    //  a nezobrazí se ta první nově přidaná Tile
     public void clearTileList() {
         tileList.clear();
     }

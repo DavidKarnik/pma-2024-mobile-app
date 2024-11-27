@@ -44,6 +44,8 @@ public class TileDetailHandler {
         tileDetailBinding.toolbar.logoImage.setImageResource(CommonUtils.getResourceId(theme.getLogoImage()));
         tileDetailBinding.toolbar.backImage.setImageResource(CommonUtils.getResourceId(theme.getImageBack()));
 
+        tileDetailBinding.toolbar.editIcon.setImageResource(CommonUtils.getResourceId(theme.getEditIcon()));
+        tileDetailBinding.toolbar.deleteIcon.setImageResource(CommonUtils.getResourceId(theme.getDeleteIcon()));
     }
 
     private void showToolbarFunctionImages() {

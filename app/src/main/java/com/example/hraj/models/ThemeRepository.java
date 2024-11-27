@@ -58,6 +58,8 @@ public class ThemeRepository {
         String tilesBackground = "@color/black";
         String tilesTextColor = "@color/white";
         Theme theme = new Theme(themeName, themeTextFont, windowBackground, toolbarBackground, toolbarTextColor, logoImage, tilesBackground, tilesTextColor, imageBack);
+        theme.setEditIcon("@drawable/icon_edit_100_white");
+        theme.setDeleteIcon("@drawable/icon_delete_100_white");
         theme.setSearchIcon(searchImage);
         themeList.add(theme);
 
@@ -75,6 +77,8 @@ public class ThemeRepository {
         tilesBackground = "@color/white";
         tilesTextColor = "@color/black";
         theme = new Theme(themeName, themeTextFont, windowBackground, toolbarBackground, toolbarTextColor, logoImage, tilesBackground, tilesTextColor, imageBack);
+        theme.setEditIcon("@drawable/icon_edit_100");
+        theme.setDeleteIcon("@drawable/icon_delete_100");
         theme.setSearchIcon(searchImage);
         themeList.add(theme);
 

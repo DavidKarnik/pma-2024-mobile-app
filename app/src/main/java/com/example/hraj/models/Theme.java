@@ -17,6 +17,8 @@ public class Theme {
     public String toolbarTextColor;
     public String logoImage;
     public String searchIcon;
+    public String editIcon;
+    public String deleteIcon;
     // tiles
     public String tilesBackground;
     public String tilesTextColor;
@@ -79,5 +81,21 @@ public class Theme {
 
     public String getImageBack() {
         return imageBack;
+    }
+
+    public String getEditIcon() {
+        return editIcon;
+    }
+
+    public void setEditIcon(String editIcon) {
+        this.editIcon = editIcon;
+    }
+
+    public String getDeleteIcon() {
+        return deleteIcon;
+    }
+
+    public void setDeleteIcon(String deleteIcon) {
+        this.deleteIcon = deleteIcon;
     }
 }

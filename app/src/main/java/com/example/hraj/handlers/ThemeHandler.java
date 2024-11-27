@@ -49,8 +49,11 @@ public class ThemeHandler {
         // tiles
         String tilesBackground = "@color/black";
         String tilesTextColor = "@color/white";
-
-        return new Theme(themeName, themeTextFont, windowBackground, toolbarBackground, toolbarTextColor, logoImage, tilesBackground, tilesTextColor, imageBack);
+        Theme theme = new Theme(themeName, themeTextFont, windowBackground, toolbarBackground, toolbarTextColor, logoImage, tilesBackground, tilesTextColor, imageBack);
+        theme.setEditIcon("@drawable/icon_edit_100_white");
+        theme.setDeleteIcon("@drawable/icon_delete_100_white");
+        theme.setSearchIcon("@android:drawable/ic_menu_search");
+        return theme;
     }
 
     public static void initSettingsBinging(ActivitySettingsBinding settingsBinding) {
