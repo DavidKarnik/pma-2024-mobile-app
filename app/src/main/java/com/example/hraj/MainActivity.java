@@ -130,9 +130,9 @@ public class MainActivity extends AppCompatActivity {
 //            intent.putExtra("tileLoader", tileLoader);
             startActivity(intent);
             return true;
-        } else if (id == R.id.option2) {
-            Toast.makeText(this, getString(R.string.option2_selected), Toast.LENGTH_SHORT).show();
-            return true;
+//        } else if (id == R.id.option2) {
+//            Toast.makeText(this, getString(R.string.option2_selected), Toast.LENGTH_SHORT).show();
+//            return true;
         } else if (id == R.id.settings) {
             Toast.makeText(this, getString(R.string.option3_selected), Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, SettingsActivity.class);

@@ -3,9 +3,9 @@
     <item
         android:id="@+id/addGame"
         android:title="@string/add_game" />
-    <item
-        android:id="@+id/option2"
-        android:title="Možnost 2" />
+<!--    <item-->
+<!--        android:id="@+id/option2"-->
+<!--        android:title="Možnost 2" />-->
     <item
         android:id="@+id/settings"
         android:title="@string/settings" />
