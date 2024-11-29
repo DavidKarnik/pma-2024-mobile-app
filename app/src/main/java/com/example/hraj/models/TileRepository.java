@@ -33,7 +33,7 @@ public class TileRepository {
         mainHandler = new Handler(Looper.getMainLooper());
 
         // Naplnění databáze dlaždicemi
-//        populateDatabase();
+        populateDatabase();
     }
 
     // Singleton metoda pro získání instance
@@ -72,15 +72,18 @@ public class TileRepository {
 
     public List<Tile> loadTilesStatic() {
         List<Tile> tiles = new ArrayList<>();
-        String description1 = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Mauris tincidunt sem sed arcu. Nullam justo enim, consectetuer nec, ullamcorper ac, vestibulum in, elit. Quisque porta. Phasellus rhoncus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Duis viverra diam non justo. Morbi imperdiet, mauris ac auctor dictum, nisl ligula egestas nulla, et sollicitudin sem purus in lacus. Nulla est. Vestibulum erat nulla, ullamcorper nec, rutrum non, nonummy ac, erat. Mauris suscipit, ligula sit amet pharetra semper, nibh ante cursus purus, vel sagittis velit mauris vel metus. Integer vulputate sem a nibh rutrum consequat. Curabitur sagittis hendrerit ante.\n" + "Praesent id justo in neque elementum ultrices. Sed elit dui, pellentesque a, faucibus vel, interdum nec, diam. Praesent vitae arcu tempor neque lacinia pretium. Duis condimentum augue id magna semper rutrum. Etiam posuere lacus quis dolor. Mauris metus. Donec quis nibh at felis congue commodo. Etiam bibendum elit eget erat. Mauris elementum mauris vitae tortor. Integer malesuada. Curabitur sagittis hendrerit ante. Ut tempus purus at lorem. Fusce consectetuer risus a nunc. In convallis. Suspendisse nisl. Nullam faucibus mi quis velit. Maecenas aliquet accumsan leo.";
-        String description2 = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Pellentesque sapien. Integer malesuada. Vivamus ac leo pretium faucibus. Donec vitae arcu. In laoreet, magna id viverra tincidunt, sem odio bibendum justo, vel imperdiet sapien wisi sed libero. Donec ipsum massa, ullamcorper in, auctor et, scelerisque sed, est. Duis condimentum augue id magna semper rutrum. Vestibulum erat nulla, ullamcorper nec, rutrum non, nonummy ac, erat. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Praesent dapibus. Proin mattis lacinia justo. Integer pellentesque quam vel velit. Morbi scelerisque luctus velit. Nulla pulvinar eleifend sem.\n" + "Etiam sapien elit, consequat eget, tristique non, venenatis quis, ante. Nulla non arcu lacinia neque faucibus fringilla. Integer in sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent in mauris eu tortor porttitor accumsan. Nullam lectus justo, vulputate eget mollis sed, tempor sed magna. Nullam eget nisl. Fusce aliquam vestibulum ipsum. Donec vitae arcu. Mauris elementum mauris vitae tortor.";
-        String description3 = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean id metus id velit ullamcorper pulvinar. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Quisque tincidunt scelerisque libero. Integer rutrum, orci vestibulum ullamcorper ultricies, lacus quam ultricies odio, vitae placerat pede sem sit amet enim. Duis condimentum augue id magna semper rutrum. Etiam ligula pede, sagittis quis, interdum ultricies, scelerisque eu. Praesent id justo in neque elementum ultrices. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Phasellus et lorem id felis nonummy placerat. Sed elit dui, pellentesque a, faucibus vel, interdum nec, diam. Duis pulvinar.";
-        String description4 = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed convallis magna eu sem. Maecenas sollicitudin. Donec iaculis gravida nulla. Etiam posuere lacus quis dolor. Aliquam erat volutpat. Fusce tellus. Phasellus et lorem id felis nonummy placerat. In rutrum. Etiam ligula pede, sagittis quis, interdum ultricies, scelerisque eu. Maecenas ipsum velit, consectetuer eu lobortis ut, dictum at dui. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Curabitur sagittis hendrerit ante.";
-        String shortDescription = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.";
-        tiles.add(new Tile("Tile 1", shortDescription, description1, 5));
-        tiles.add(new Tile("Tile 2", shortDescription, description2, 3));
-        tiles.add(new Tile("Tile 3", shortDescription, description3, 7));
-        tiles.add(new Tile("Tile 4", shortDescription, description4, 2));
+        String description1 = "Jedno dítě je liška a má několik minut na schování v předem vymezeném prostoru. Ostatní děti mají za úkol najít lišku, přičemž mohou používat stopovací nápovědy (například barevné papírky, šipky nebo provázky), které liška nechává za sebou. Kdo lišku najde, stává se liškou v dalším kole.";
+        String description2 = "Jeden hráč je král a říká příkazy, například „Král říká: dotkněte se nohou“ nebo „Poskočte třikrát“. Ostatní hráči musí poslouchat, ale pokud příkaz nezačne „Král říká“, hráč, který příkaz splní, vypadává. Cílem je zůstat ve hře co nejdéle.";
+        String description3 = "Jeden hráč stojí zády ke skupině a počítá do deseti. Ostatní se snaží během této doby dostat co nejblíže k němu. Když se vedoucí otočí, všichni musí zůstat nehybní jako sochy. Kdo se pohne, musí se vrátit na start. Vítězí ten, kdo se jako první dotkne vedoucího.";
+        String description4 = "Hráči se rozdělí do dvou týmů a chytnou se lana. Uprostřed je značka (například šátek), kterou musí jeden tým přetáhnout za čáru na své straně. Hra posiluje týmovou spolupráci a vyžaduje fyzickou sílu. Můžete ji hrát na louce nebo v parku.";
+        String description5 = "Hráč, který je „baba“, honí ostatní děti a snaží se jich dotknout, aby předal „babu“ dál. V případě varianty ledová, chycený hráč zůstává nehybný, dokud ho jiný hráč neosvobodí dotykem. U varianty ohnivá musí chycený hráč splnit úkol, aby se mohl vrátit do hry.";
+        String description6 = "Jeden hráč se schová a během úkrytu zanechává stopy, například nakreslené šipky na zem nebo položení malých předmětů (kamínků, barevných papírků). Ostatní hráči musí stopy sledovat a najít skrytého hráče. Hru lze hrát v lese, na zahradě nebo v parku.";
+        tiles.add(new Tile("Hon na lišku", "Skupina dětí hledá „lišku“, která se schovává v určené oblasti.", description1, 10));
+        tiles.add(new Tile("Král říká", "Hráči plní příkazy „krále“, ale pouze pokud před nimi zazní „Král říká“.", description2, 4));
+        tiles.add(new Tile("Sochy", "Hráči se musí zastavit v pohybu, když se otočí vedoucí hry.", description3, 7));
+        tiles.add(new Tile("Přetahovaná", "Dva týmy se snaží přetáhnout lano na svou stranu.", description4, 6));
+        tiles.add(new Tile("Na babu", "Jeden hráč je „baba“ a snaží se dotknout ostatních, aby je chytil.", description5, 6));
+        tiles.add(new Tile("Skrývačky s indiciemi", "Jeden hráč se schová a zanechá za sebou stopy, které ostatní sledují.", description6, 8));
         return tiles;
     }
 
