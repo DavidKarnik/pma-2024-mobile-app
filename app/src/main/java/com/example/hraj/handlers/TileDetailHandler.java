@@ -53,7 +53,7 @@ public class TileDetailHandler {
         tileDetailBinding.toolbar.deleteIcon.setVisibility(View.VISIBLE);
     }
 
-    public void showEditDialog(int id, String currentTitle, String currentShortDescription, String currentDescription, int currentNumOfPlayers) {
+    public void showEditDialog(int id, String currentTitle, String currentShortDescription, String currentDescription, String currentNumOfPlayers) {
         // Načtení layoutu dialogu
         View dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_edit_tile, null);
 
@@ -66,7 +66,7 @@ public class TileDetailHandler {
         editTitle.setText(currentTitle);
         editShortDescription.setText(currentShortDescription);
         editDescription.setText(currentDescription);
-        editNumOfPlayers.setText(String.valueOf(currentNumOfPlayers));
+        editNumOfPlayers.setText(currentNumOfPlayers);
 
         // Vytvoření dialogu
         new AlertDialog.Builder(context)
@@ -77,12 +77,12 @@ public class TileDetailHandler {
                     String newTitle = editTitle.getText().toString();
                     String newShortDescription = editShortDescription.getText().toString();
                     String newDescription = editDescription.getText().toString();
-                    int newNumOfPlayers = Integer.parseInt(editNumOfPlayers.getText().toString());
+                    String newNumOfPlayers = editNumOfPlayers.getText().toString();
 
                     // Aktualizace UI v aktivitě přes binding
                     tileDetailBinding.detailTitle.setText(newTitle);
                     tileDetailBinding.detailDescription.setText(newDescription);
-                    tileDetailBinding.detailNumOfPlayers.setText("Players: " + newNumOfPlayers);
+                    tileDetailBinding.detailNumOfPlayers.setText(context.getString(R.string.number_of_players) + ": " + newNumOfPlayers);
 
                     // uložení do databáze
                     saveEditedTile(id, newTitle, newShortDescription, newDescription, newNumOfPlayers);
@@ -91,7 +91,7 @@ public class TileDetailHandler {
                 .show();
     }
 
-    public void saveEditedTile(int id, String title, String currentShortDescription, String description, int numOfPlayers) {
+    public void saveEditedTile(int id, String title, String currentShortDescription, String description, String numOfPlayers) {
         // Např. uložení do databáze nebo jiné akce
         Toast.makeText(context, "Tile updated: " + title + ", id: " + id, Toast.LENGTH_SHORT).show();
         Tile updatedTile = new Tile(id, title, numOfPlayers, currentShortDescription, description);

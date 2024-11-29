@@ -12,7 +12,7 @@ import com.example.hraj.models.Tile;
 import com.example.hraj.models.TileDao;
 
 // !!! Při každé změně struktury databáze povýšit verzy databáze !!!
-@Database(entities = {Tile.class, Theme.class}, version = 6)
+@Database(entities = {Tile.class, Theme.class}, version = 7)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract TileDao tileDao();
 

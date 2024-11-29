@@ -27,7 +27,7 @@ public class TileDetailActivity extends AppCompatActivity {
         String title = intent.getStringExtra("title");
         String shortDescription = intent.getStringExtra("shortDescription");
         String description = intent.getStringExtra("description");
-        int numOfPlayers = intent.getIntExtra("numOfPlayers", 0);
+        String numOfPlayers = intent.getStringExtra("numOfPlayers");
 
         binding.detailTitle.setText(title);
         binding.detailDescription.setText(description);

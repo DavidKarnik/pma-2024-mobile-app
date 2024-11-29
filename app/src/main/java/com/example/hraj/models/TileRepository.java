@@ -78,12 +78,12 @@ public class TileRepository {
         String description4 = "Hráči se rozdělí do dvou týmů a chytnou se lana. Uprostřed je značka (například šátek), kterou musí jeden tým přetáhnout za čáru na své straně. Hra posiluje týmovou spolupráci a vyžaduje fyzickou sílu. Můžete ji hrát na louce nebo v parku.";
         String description5 = "Hráč, který je „baba“, honí ostatní děti a snaží se jich dotknout, aby předal „babu“ dál. V případě varianty ledová, chycený hráč zůstává nehybný, dokud ho jiný hráč neosvobodí dotykem. U varianty ohnivá musí chycený hráč splnit úkol, aby se mohl vrátit do hry.";
         String description6 = "Jeden hráč se schová a během úkrytu zanechává stopy, například nakreslené šipky na zem nebo položení malých předmětů (kamínků, barevných papírků). Ostatní hráči musí stopy sledovat a najít skrytého hráče. Hru lze hrát v lese, na zahradě nebo v parku.";
-        tiles.add(new Tile("Hon na lišku", "Skupina dětí hledá „lišku“, která se schovává v určené oblasti.", description1, 10));
-        tiles.add(new Tile("Král říká", "Hráči plní příkazy „krále“, ale pouze pokud před nimi zazní „Král říká“.", description2, 4));
-        tiles.add(new Tile("Sochy", "Hráči se musí zastavit v pohybu, když se otočí vedoucí hry.", description3, 7));
-        tiles.add(new Tile("Přetahovaná", "Dva týmy se snaží přetáhnout lano na svou stranu.", description4, 6));
-        tiles.add(new Tile("Na babu", "Jeden hráč je „baba“ a snaží se dotknout ostatních, aby je chytil.", description5, 6));
-        tiles.add(new Tile("Skrývačky s indiciemi", "Jeden hráč se schová a zanechá za sebou stopy, které ostatní sledují.", description6, 8));
+        tiles.add(new Tile("Hon na lišku", "Skupina dětí hledá „lišku“, která se schovává v určené oblasti.", description1, "4+"));
+        tiles.add(new Tile("Král říká", "Hráči plní příkazy „krále“, ale pouze pokud před nimi zazní „Král říká“.", description2, "3+"));
+        tiles.add(new Tile("Sochy", "Hráči se musí zastavit v pohybu, když se otočí vedoucí hry.", description3, "2+"));
+        tiles.add(new Tile("Přetahovaná", "Dva týmy se snaží přetáhnout lano na svou stranu.", description4, "2+"));
+        tiles.add(new Tile("Na babu", "Jeden hráč je „baba“ a snaží se dotknout ostatních, aby je chytil.", description5, "4+"));
+        tiles.add(new Tile("Skrývačky s indiciemi", "Jeden hráč se schová a zanechá za sebou stopy, které ostatní sledují.", description6, "4+"));
         return tiles;
     }
 

@@ -15,7 +15,7 @@
         android:id="@+id/editTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Edit Title"
+        android:hint="@string/game_title"
         android:inputType="text"
         android:minHeight="48dp"
         android:padding="12dp" />
@@ -30,7 +30,7 @@
         android:id="@+id/editNumOfPlayers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Number of Players"
+        android:hint="@string/number_of_players"
         android:inputType="number"
         android:minHeight="48dp"
         android:padding="12dp" />
@@ -45,7 +45,7 @@
         android:id="@+id/editShortDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Edit Short Description"
+        android:hint="@string/short_description"
         android:inputType="text"
         android:minHeight="48dp"
         android:padding="12dp" />
@@ -60,7 +60,7 @@
         android:id="@+id/editDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Edit Description"
+        android:hint="@string/description"
         android:inputType="text"
         android:minHeight="48dp"
         android:padding="12dp" />

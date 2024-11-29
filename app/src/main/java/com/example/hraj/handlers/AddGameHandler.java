@@ -32,7 +32,13 @@ public class AddGameHandler {
         String gameTitle = addGameBinding.gameTitle.getText().toString();
         String shortDescription = addGameBinding.shortDescription.getText().toString();
         String fullDescription = addGameBinding.fullDescription.getText().toString();
-        int numOfPlayers = Integer.parseInt(addGameBinding.numOfPlayers.getText().toString());
+        String numOfPlayers = addGameBinding.numOfPlayers.getText().toString();
+
+        if (!verifyNumberOfPlayers(numOfPlayers)) {
+            addGameBinding.numOfPlayers.setError("Špatný formát počtu hráčů! \n"
+                    + "Příklad: 6, 6+, 6-8");
+            return;
+        }
 
         Tile newTile = new Tile(gameTitle, shortDescription, fullDescription, numOfPlayers);
 
@@ -72,4 +78,24 @@ public class AddGameHandler {
         addGameBinding.tileItem.numOfPlayers.setTextColor(CommonUtils.getColorResource(theme.getTilesTextColor()));
         addGameBinding.tileItem.tileDescription.setTextColor(CommonUtils.getColorResource(theme.getTilesTextColor()));
     }
+
+    /**
+     * Ověření správného formátu počtu hráčů
+     *
+     * @param numberOfPlayers - String číslo hráčů
+     * @return true
+     * 6, 6+, 6-10, 1-999
+     * @return false
+     * 6.6, +6, 6++, 6+6, -6, 6--, 6-6-6, 1000
+     */
+    private Boolean verifyNumberOfPlayers(String numberOfPlayers) {
+        // Trim whitespace from input
+        numberOfPlayers = numberOfPlayers.trim();
+
+        // Regular expression to validate the format
+        String regex = "^(\\d{1,3})(-\\d{1,3})?(\\+)?$";
+
+        return numberOfPlayers.matches(regex);
+    }
+
 }

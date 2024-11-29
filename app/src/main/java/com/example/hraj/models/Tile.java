@@ -9,12 +9,12 @@ public class Tile {
     @PrimaryKey(autoGenerate = true)
     public int id;
     private String title;
-    private Integer numOfPlayers;
+    private String numOfPlayers;
     private String shortDescription;
     private String description;
 
     // Konstruktor používaný Room
-    public Tile(String title, String shortDescription, String description, Integer numOfPlayers) {
+    public Tile(String title, String shortDescription, String description, String numOfPlayers) {
         this.title = title;
         this.numOfPlayers = numOfPlayers;
         this.shortDescription = shortDescription;
@@ -23,7 +23,7 @@ public class Tile {
 
     // Konstruktor ignorovaný Room
     @Ignore
-    public Tile(int id, String title, Integer numOfPlayers, String shortDescription, String description) {
+    public Tile(int id, String title, String numOfPlayers, String shortDescription, String description) {
         this.id = id;
         this.title = title;
         this.numOfPlayers = numOfPlayers;
@@ -47,11 +47,11 @@ public class Tile {
         this.description = description;
     }
 
-    public Integer getNumOfPlayers() {
+    public String getNumOfPlayers() {
         return numOfPlayers;
     }
 
-    public void setNumOfPlayers(Integer numOfPlayers) {
+    public void setNumOfPlayers(String numOfPlayers) {
         this.numOfPlayers = numOfPlayers;
     }
 
