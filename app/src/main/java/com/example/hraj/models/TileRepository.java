@@ -78,12 +78,31 @@ public class TileRepository {
         String description4 = "Hráči se rozdělí do dvou týmů a chytnou se lana. Uprostřed je značka (například šátek), kterou musí jeden tým přetáhnout za čáru na své straně. Hra posiluje týmovou spolupráci a vyžaduje fyzickou sílu. Můžete ji hrát na louce nebo v parku.";
         String description5 = "Hráč, který je „baba“, honí ostatní děti a snaží se jich dotknout, aby předal „babu“ dál. V případě varianty ledová, chycený hráč zůstává nehybný, dokud ho jiný hráč neosvobodí dotykem. U varianty ohnivá musí chycený hráč splnit úkol, aby se mohl vrátit do hry.";
         String description6 = "Jeden hráč se schová a během úkrytu zanechává stopy, například nakreslené šipky na zem nebo položení malých předmětů (kamínků, barevných papírků). Ostatní hráči musí stopy sledovat a najít skrytého hráče. Hru lze hrát v lese, na zahradě nebo v parku.";
-        tiles.add(new Tile("Hon na lišku", "Skupina dětí hledá „lišku“, která se schovává v určené oblasti.", description1, "4+"));
+        tiles.add(new Tile("Hon na lišku", "Skupina dětí hledá „lišku“, která se schovává v určené oblasti.", description1, "3-10"));
         tiles.add(new Tile("Král říká", "Hráči plní příkazy „krále“, ale pouze pokud před nimi zazní „Král říká“.", description2, "3+"));
-        tiles.add(new Tile("Sochy", "Hráči se musí zastavit v pohybu, když se otočí vedoucí hry.", description3, "2+"));
+        tiles.add(new Tile("Sochy", "Hráči se musí zastavit v pohybu, když se otočí vedoucí hry.", description3, "3-8"));
         tiles.add(new Tile("Přetahovaná", "Dva týmy se snaží přetáhnout lano na svou stranu.", description4, "2+"));
-        tiles.add(new Tile("Na babu", "Jeden hráč je „baba“ a snaží se dotknout ostatních, aby je chytil.", description5, "4+"));
+        tiles.add(new Tile("Na babu", "Jeden hráč je „baba“ a snaží se dotknout ostatních, aby je chytil.", description5, "3+"));
         tiles.add(new Tile("Skrývačky s indiciemi", "Jeden hráč se schová a zanechá za sebou stopy, které ostatní sledují.", description6, "4+"));
+
+        String descriptionX = "Jeden tým vytvoří trasu označenou šipkami, které vedou k cíli – pokladu. Druhý tým nebo jednotlivci musí šipky následovat, přičemž některé z nich mohou být falešné. Vyhrává ten, kdo poklad najde jako první.";
+        tiles.add(new Tile("Šipkovaná", "Hráči sledují šipky vyznačené na cestě a hledají ukrytý poklad.", descriptionX, "4+"));
+
+        descriptionX = "Jeden hráč je „honič“ a ostatní musí na povel najít a dotknout se předmětu určité barvy (např. zelená tráva, červené tričko). Pokud někdo barvu nenajde včas, stává se honičem. Hru lze hrát na zahradě nebo v parku.";
+        tiles.add(new Tile("Honička s barvami", "Hráči musí najít a dotknout se určité barvy, aby nebyli chyteni.", descriptionX, "3-6"));
+
+        descriptionX = "Na zemi se vyznačí dvě čáry představující břehy potoka. Hráči se snaží přeskočit potok, který se v každém kole rozšíří. Kdo se dotkne „vody“, vypadává. Poslední hráč vyhrává.";
+        tiles.add(new Tile("Skok přes potok", "Hráči přeskakují imaginární nebo vyznačený potok, který se postupně rozšiřuje.", descriptionX, "2+"));
+
+        descriptionX = "Každý hráč si na čelo připevní papírek se jménem známé postavy, zvířete nebo věci. Hráči kladou otázky ostatním, na které lze odpovědět pouze „ano“ nebo „ne“. Cílem je co nejrychleji uhodnout, kdo jste.";
+        tiles.add(new Tile("Kdo jsem?", "Hráči si na čelo připevní papírek se jménem postavy a snaží se uhodnout, kdo jsou.", descriptionX, "3+"));
+
+        descriptionX = "První hráč zašeptá slovo nebo větu dalšímu hráči. Ten ji předá dál, jak ji slyšel. Poslední hráč ji řekne nahlas a porovná se s původním sdělením. Hra je obzvlášť zábavná, pokud vzniknou vtipné změny.";
+        tiles.add(new Tile("Tichá pošta", "Hráči si šeptají slova nebo věty, které se postupně mění.", descriptionX, "4-10"));
+
+        descriptionX = "Hráči mají omezený čas a materiály (např. papír, lepidlo, nůžky) na postavení co nejvyššího mostu, který musí unést malý předmět (např. gumu). Vyhrává nejkreativnější a nejstabilnější most.";
+        tiles.add(new Tile("Papírový most", "Hráči staví co nejvyšší most z papíru a lepidla.", descriptionX, "2-5"));
+
         return tiles;
     }
 
